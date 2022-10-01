@@ -5,19 +5,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
+import Form from "../../shared/Form";
 
 const RegisterForm = ({ onSubmit }) => {
     const { register, handleSubmit } = useForm();
 
     return (
-        <Box sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            mt: 5,
-        }}
-        >
+        <Form>
             <FormControl fullWidth>
                 <InputLabel>Username</InputLabel>
                 <OutlinedInput
@@ -59,13 +53,12 @@ const RegisterForm = ({ onSubmit }) => {
 
             <Button
                 type="button"
-                variant="contained"
                 size="large"
                 onClick={handleSubmit(onSubmit)}
             >
                 Submit
             </Button>
-        </Box>
+        </Form>
     );
 };
 

@@ -43,7 +43,6 @@ const JobBullets = ({ control, register }) => {
             <h5>Bullet Points</h5>
             {fields.map((field, index) => (
                 <OutlinedInput
-                    sx={{ background: "#fff" }}
                     key={field.id}
                     {...register(`bullets.${index}`)}
                     endAdornment={(

@@ -4,7 +4,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import PropTypes from "prop-types";
-import TechStack from "../shared/TechStack";
+import TechStack from "../../shared/TechStack";
 
 const techStackOptions = [
     "javascript",

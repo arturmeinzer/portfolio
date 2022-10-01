@@ -1,26 +1,26 @@
 import React from "react";
+import BaseLayout from "../../../layouts/BaseLayout";
 
-const Topics = () => {
-    return (
-        <>
-            <section className="section-title">
-                <div className="px-2">
-                    <div className="pt-5 pb-4">
-                        <h1>Specific Category</h1>
-                    </div>
+const Topics = () => (
+    <BaseLayout>
+        <section className="section-title">
+            <div className="px-2">
+                <div className="pb-4">
+                    <h1>Specific Category</h1>
                 </div>
-            </section>
-            <section className="fj-topic-list">
-                <table className="table table-hover ">
-                    <thead>
+            </div>
+        </section>
+        <section className="fj-topic-list">
+            <table className="table table-hover ">
+                <thead>
                     <tr>
                         <th scope="col">Topic</th>
                         <th scope="col">Category</th>
                         <th scope="col">Author</th>
                         <th scope="col">Replies</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <tr>
                         <th>Some Topic Info</th>
                         <td className="category">General Discussion</td>
@@ -39,11 +39,10 @@ const Topics = () => {
                         <td>Filip Jerga</td>
                         <td>2</td>
                     </tr>
-                    </tbody>
-                </table>
-            </section>
-        </>
-    );
-}
+                </tbody>
+            </table>
+        </section>
+    </BaseLayout>
+);
 
 export default Topics;

@@ -5,12 +5,13 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
+import Form from "../../shared/Form";
 
 const LoginForm = ({ onSubmit }) => {
     const { register, handleSubmit } = useForm();
 
     return (
-        <>
+        <Form>
             <FormControl fullWidth>
                 <InputLabel>Email</InputLabel>
                 <OutlinedInput
@@ -33,13 +34,12 @@ const LoginForm = ({ onSubmit }) => {
 
             <Button
                 type="button"
-                variant="contained"
                 size="large"
                 onClick={handleSubmit(onSubmit)}
             >
                 Submit
             </Button>
-        </>
+        </Form>
     );
 };
 

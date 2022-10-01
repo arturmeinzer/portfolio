@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -9,10 +9,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Divider from "@mui/material/Divider";
+import PropTypes from "prop-types";
 import AppLink from "./AppLink";
 import withApollo from "../../hoc/withApollo";
-import { useLazyGetUser } from "../../apollo/actions";
 import ManagerDropDown from "./ManagerDropDown";
+import Brand from "./Brand";
+import withUser from "../../hoc/withUser";
+import { PROP_USER } from "../../constants/props";
 
 const pages = [
     {
@@ -33,30 +37,11 @@ const pages = [
     },
 ];
 
-const MuiNavBar = () => {
+const NavBar = ({ user, userError }) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
-    const [user, setUser] = useState(null);
-    const [hasResponse, setHasResponse] = useState(false);
-    const [getUser, { data, error }] = useLazyGetUser();
-
-    useEffect(() => {
-        getUser();
-    }, [getUser]);
-
-    if (data) {
-        if (data.user && !user) setUser(data.user);
-        if (!data.user && user) setUser(null);
-        if (!hasResponse) setHasResponse(true);
-    }
 
     const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
     const handleCloseNavMenu = () => setAnchorElNav(null);
-
-    const brand = (
-        <AppLink href="/">
-            <Box sx={{ fontSize: "25px" }}>Artur Meinzer</Box>
-        </AppLink>
-    );
 
     return (
         <AppBar position="static" sx={{ background: "#141618" }}>
@@ -69,9 +54,9 @@ const MuiNavBar = () => {
                         display: { xs: "flex", md: "none" },
                     }}
                     >
-                        { brand }
+                        <Brand />
                         <Box sx={{ display: "flex", gap: "10px" }}>
-                            <ManagerDropDown />
+                            { user && <ManagerDropDown /> }
                             <IconButton
                                 sx={{ border: "1px solid #aaa", borderRadius: "5px", color: "#aaa" }}
                                 onClick={handleOpenNavMenu}
@@ -94,14 +79,23 @@ const MuiNavBar = () => {
                                         </Typography>
                                     </MenuItem>
                                 ))}
+                                <Divider />
+                                <MenuItem>
+                                    <AppLink href="/register">Register</AppLink>
+                                </MenuItem>
+                                <MenuItem>
+                                    <AppLink href="/login">
+                                        <Button color="success">Login</Button>
+                                    </AppLink>
+                                </MenuItem>
                             </Menu>
                         </Box>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, justifyContent: "space-between", display: { xs: "none", md: "flex" } }}>
                         <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                            { brand }
-                            {pages.map((page) => (
+                            <Brand />
+                            { pages.map((page) => (
                                 <AppLink
                                     key={page.url}
                                     href={page.url}
@@ -111,38 +105,36 @@ const MuiNavBar = () => {
                                 </AppLink>
                             ))}
                         </Box>
-                        { hasResponse && (
-                            <Box sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "20px",
-                            }}
-                            >
-                                { user && (
-                                    <>
-                                        <span>{`Welcome ${user.username}`}</span>
-                                        <ManagerDropDown />
-                                        <AppLink href="/logout">
-                                            <Button variant="contained" color="error">
-                                                Logout
-                                            </Button>
-                                        </AppLink>
-                                    </>
-                                )}
-                                { (error || !user) && (
-                                    <>
-                                        <AppLink href="/register">
-                                            Register
-                                        </AppLink>
-                                        <AppLink href="/login">
-                                            <Button variant="contained" color="success">
-                                                Login
-                                            </Button>
-                                        </AppLink>
-                                    </>
-                                )}
-                            </Box>
-                        )}
+                        <Box sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "20px",
+                        }}
+                        >
+                            { user && (
+                                <>
+                                    <span>{`Welcome ${user.username}`}</span>
+                                    <ManagerDropDown />
+                                    <AppLink href="/logout">
+                                        <Button variant="contained" color="error">
+                                            Logout
+                                        </Button>
+                                    </AppLink>
+                                </>
+                            )}
+                            { (userError || !user) && (
+                                <>
+                                    <AppLink href="/register">
+                                        Register
+                                    </AppLink>
+                                    <AppLink href="/login">
+                                        <Button color="success">
+                                            Login
+                                        </Button>
+                                    </AppLink>
+                                </>
+                            )}
+                        </Box>
                     </Box>
                 </Toolbar>
             </Container>
@@ -150,4 +142,14 @@ const MuiNavBar = () => {
     );
 };
 
-export default withApollo(MuiNavBar);
+NavBar.propTypes = {
+    user: PROP_USER,
+    userError: PropTypes.string,
+};
+
+NavBar.defaultProps = {
+    user: null,
+    userError: null,
+};
+
+export default withApollo(withUser(NavBar));

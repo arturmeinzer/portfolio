@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const projectSchema = new Schema({
-    title: { type: String, required: true, maxLength: 128 },
-    content: { type: String, required: true },
-    techStack: Array,
-    github: String,
+const jobSchema = new Schema({
+    company: { type: String, required: true, maxLength: 128 },
+    position: { type: String, required: true },
+    bullets: Array,
+    startDate: Date,
+    endDate: Date,
     createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Project", projectSchema);
+module.exports = mongoose.model("Job", jobSchema);

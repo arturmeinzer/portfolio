@@ -5,24 +5,16 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
 import TechStackSelect from "./TechStackSelect";
+import Form from "../../shared/Form";
 
-const ProjectCreateForm = ({ onSubmit }) => {
+const ProjectCreateForm = ({ onSubmit, initialData }) => {
     const { control, register, handleSubmit } = useForm({
-        defaultValues: {
-            techStack: [],
-        },
+        defaultValues: initialData,
     });
 
     return (
-        <Box sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            mt: 5,
-        }}
-        >
+        <Form>
             <FormControl fullWidth>
                 <InputLabel>Title</InputLabel>
                 <OutlinedInput
@@ -36,6 +28,8 @@ const ProjectCreateForm = ({ onSubmit }) => {
                 <InputLabel>Content</InputLabel>
                 <OutlinedInput
                     label="Content"
+                    multiline
+                    minRows={3}
                     name="content"
                     {...register("content")}
                 />
@@ -61,18 +55,24 @@ const ProjectCreateForm = ({ onSubmit }) => {
 
             <Button
                 type="button"
-                variant="contained"
                 size="large"
                 onClick={handleSubmit(onSubmit)}
             >
                 Submit
             </Button>
-        </Box>
+        </Form>
     );
 };
 
 ProjectCreateForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    initialData: PropTypes.shape({}),
+};
+
+ProjectCreateForm.defaultProps = {
+    initialData: {
+        techStack: [],
+    },
 };
 
 export default ProjectCreateForm;

@@ -1,85 +1,67 @@
 import React from "react";
-import { useQuery, useMutation } from "@apollo/react-hooks";
 import { getDataFromTree } from "@apollo/react-ssr";
-import Link from "next/link";
-import {
-    GET_PROJECTS,
-    CREATE_PROJECT,
-    UPDATE_PROJECT,
-    DELETE_PROJECT,
-} from "../../apollo/queries";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { useGetProjects } from "../../apollo/actions";
 import withApollo from "../../hoc/withApollo";
 import ProjectCard from "../../components/projects/ProjectCard";
+import BaseLayout from "../../layouts/BaseLayout";
+import { PROP_USER } from "../../constants/props";
+import withUser from "../../hoc/withUser";
+import AppLink from "../../components/shared/AppLink";
 
-const Projects = () => {
-    const { data } = useQuery(GET_PROJECTS);
-
-    const [updateProject] = useMutation(UPDATE_PROJECT);
-    const [createProject] = useMutation(CREATE_PROJECT, {
-        update: (cache, { data: { createProject: createdProject } }) => {
-            const { projects } = cache.readQuery({ query: GET_PROJECTS });
-            cache.writeQuery({
-                query: GET_PROJECTS,
-                data: {
-                    projects: [
-                        ...projects,
-                        createdProject,
-                    ],
-                },
-            });
-        },
-    });
-    const [deleteProject] = useMutation(DELETE_PROJECT, {
-        update: (cache, { data: { deleteProject: deletedProject } }) => {
-            const { projects } = cache.readQuery({ query: GET_PROJECTS });
-            // eslint-disable-next-line no-underscore-dangle
-            const newProjects = projects.filter((p) => p._id !== deletedProject);
-            cache.writeQuery({
-                query: GET_PROJECTS,
-                data: { projects: newProjects },
-            });
-        },
-    });
+const Projects = ({ user }) => {
+    const { data } = useGetProjects();
 
     const projects = (data && data.projects) || [];
 
     return (
-        <>
-            <section className="section-title">
-                <div className="px-2">
-                    <div className="pt-5 pb-4">
-                        <h1>Portfolio</h1>
-                    </div>
-                </div>
-                <button
-                    onClick={createProject}
-                    className="btn btn-primary">Create Project</button>
-            </section>
-            <section className="pb-5">
-                <div className="row">
-                    {
-                        projects.map(project =>
-                            <div key={project._id} className="col-md-4">
-                                <Link
-                                    href='/projects/[id]'
-                                    as={`/projects/${project._id}`}>
-                                    <a className="card-link">
-                                        <ProjectCard project={project}/>
-                                    </a>
-                                </Link>
-                                <button
-                                    className="btn btn-warning"
-                                    onClick={() => updateProject({ variables: { id: project._id } })}>Update Project</button>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => deleteProject({ variables: { id: project._id } })}>Delete Project</button>
-                            </div>
-                        )
-                    }
-                </div>
-            </section>
-        </>
-    )
-}
+        <BaseLayout>
+            <Box sx={{ px: 2, pb: 4 }}>
+                <h1>Portfolio</h1>
+            </Box>
+            <Box sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "stretch",
+                rowGap: "20px",
+            }}
+            >
+                { projects.map((project) => (
+                    <ProjectCard
+                        key={project._id}
+                        project={project}
+                    >
+                        { user && (
+                            <>
+                                <AppLink
+                                    href="/projects/[id]/edit"
+                                    as={`/projects/${project._id}/edit`}
+                                >
+                                    <Button startIcon={<MdEdit />}>Edit</Button>
+                                </AppLink>
+                                <AppLink
+                                    href="/projects/[id]/delete"
+                                    as={`/projects/${project._id}/delete`}
+                                >
+                                    <Button startIcon={<MdDelete />} color="error">Delete</Button>
+                                </AppLink>
+                            </>
+                        )}
+                    </ProjectCard>
+                ))}
+            </Box>
+        </BaseLayout>
+    );
+};
 
-export default withApollo(Projects, { getDataFromTree });
+Projects.propTypes = {
+    user: PROP_USER,
+};
+
+Projects.defaultProps = {
+    user: null,
+};
+
+export default withApollo(withUser(Projects), { getDataFromTree });

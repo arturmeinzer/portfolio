@@ -1,25 +1,24 @@
 import React from "react";
 import Link from "next/link";
+
 import PropTypes from "prop-types";
 
-const AppLink = ({ children, className, href }) => {
-    const completeClasses = "nav-link mr-3 " + className;
-
-    return (
-        <Link href={href}>
-            <a className={completeClasses}>{children}</a>
-        </Link>
-    );
-}
+const AppLink = ({ children, href, as }) => (
+    <Link href={href} as={as} passHref>
+        <a href="/replace">
+            {children}
+        </a>
+    </Link>
+);
 
 AppLink.propTypes = {
-    children: PropTypes.string.isRequired,
-    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
     href: PropTypes.string.isRequired,
+    as: PropTypes.string,
 };
 
 AppLink.defaultProps = {
-    className: "",
+    as: null,
 };
 
 export default AppLink;
