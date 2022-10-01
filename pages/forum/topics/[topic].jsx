@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import BaseLayout from "../../../layouts/BaseLayout";
 
 const Posts = () => (
@@ -19,7 +20,7 @@ const Posts = () => (
                                 <div className="row">
                                     <div className="topic-avatar">
                                         <div className="main-avatar">
-                                            <img
+                                            <Image
                                                 alt=""
                                                 className="avatar subtle-shadow"
                                                 src="https://i.imgur.com/cVDadwb.png"
@@ -67,7 +68,7 @@ const Posts = () => (
                                 <div className="row">
                                     <div className="topic-avatar">
                                         <div className="main-avatar">
-                                            <img
+                                            <Image
                                                 alt=""
                                                 className="avatar subtle-shadow"
                                                 src="https://i.imgur.com/cVDadwb.png"
@@ -115,7 +116,7 @@ const Posts = () => (
                                 <div className="row">
                                     <div className="topic-avatar">
                                         <div className="main-avatar">
-                                            <img
+                                            <Image
                                                 alt=""
                                                 className="avatar subtle-shadow"
                                                 src="https://i.imgur.com/cVDadwb.png"

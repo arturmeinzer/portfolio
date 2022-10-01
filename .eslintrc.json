@@ -3,6 +3,7 @@
         "browser": true
     },
     "extends": [
+        "next",
         "airbnb",
         "airbnb/hooks"
     ],

@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import Image from "next/image";
 
 const Hero = () => (
     <Box sx={{
@@ -36,7 +37,7 @@ const Hero = () => (
                 height: "350px",
             }}
             >
-                <img
+                <Image
                     style={{
                         width: "100%",
                         height: "100%",
