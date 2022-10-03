@@ -17,6 +17,7 @@ const RegisterForm = ({ onSubmit }) => {
                 <OutlinedInput
                     label="Username"
                     name="username"
+                    autoComplete="username"
                     {...register("username")}
                 />
             </FormControl>
@@ -27,6 +28,7 @@ const RegisterForm = ({ onSubmit }) => {
                     label="Email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     {...register("email")}
                 />
             </FormControl>
@@ -37,6 +39,7 @@ const RegisterForm = ({ onSubmit }) => {
                     label="Password"
                     name="password"
                     type="password"
+                    autoComplete="new-password"
                     {...register("password")}
                 />
             </FormControl>
@@ -47,6 +50,7 @@ const RegisterForm = ({ onSubmit }) => {
                     label="Password Confirmation"
                     name="passwordConfirmation"
                     type="password"
+                    autoComplete="new-password"
                     {...register("passwordConfirmation")}
                 />
             </FormControl>

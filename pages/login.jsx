@@ -6,6 +6,7 @@ import withApollo from "../hoc/withApollo";
 import { useLogin } from "../apollo/actions";
 import Redirect from "../components/shared/Redirect";
 import BaseLayout from "../layouts/BaseLayout";
+import PageHeader from "../components/shared/PageHeader";
 
 const Login = () => {
     const [login, { data, error }] = useLogin();
@@ -15,9 +16,7 @@ const Login = () => {
     return (
         <BaseLayout>
             <Container sx={{ width: "500px" }}>
-                <div>
-                    <h1>Login</h1>
-                </div>
+                <PageHeader>Login</PageHeader>
                 <LoginForm onSubmit={(loginData) => {
                     login({ variables: loginData }).catch(() => {});
                 }}

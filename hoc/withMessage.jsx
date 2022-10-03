@@ -10,6 +10,7 @@ const initialState = {
 
 export default (WrappedComponent) => (props) => {
     const [snackBar, setSnackBar] = useState(initialState);
+
     const notify = (message, severity = "success") => {
         setSnackBar({
             show: true,
@@ -21,7 +22,7 @@ export default (WrappedComponent) => (props) => {
     const handleClose = () => {
         setSnackBar({
             ...snackBar,
-            show: initialState.show,
+            show: false,
         });
     };
 

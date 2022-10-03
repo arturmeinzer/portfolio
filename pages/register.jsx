@@ -6,6 +6,7 @@ import RegisterForm from "../components/forms/auth/RegisterForm";
 import Redirect from "../components/shared/Redirect";
 import BaseLayout from "../layouts/BaseLayout";
 import { useRegister } from "../apollo/actions";
+import PageHeader from "../components/shared/PageHeader";
 
 const Register = () => {
     const [registerUser, { data, error }] = useRegister();
@@ -15,9 +16,7 @@ const Register = () => {
     return (
         <BaseLayout>
             <Container sx={{ width: "500px" }}>
-                <div>
-                    <h1>Register</h1>
-                </div>
+                <PageHeader>Register</PageHeader>
                 <RegisterForm onSubmit={(registerData) => {
                     registerUser({ variables: registerData }).catch(() => {});
                 }}

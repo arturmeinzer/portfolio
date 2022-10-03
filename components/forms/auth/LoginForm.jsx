@@ -18,6 +18,7 @@ const LoginForm = ({ onSubmit }) => {
                     label="Email"
                     name="email"
                     type="email"
+                    autoComplete="email"
                     {...register("email")}
                 />
             </FormControl>
@@ -28,6 +29,7 @@ const LoginForm = ({ onSubmit }) => {
                     label="Password"
                     name="password"
                     type="password"
+                    autoComplete="current-password"
                     {...register("password")}
                 />
             </FormControl>
