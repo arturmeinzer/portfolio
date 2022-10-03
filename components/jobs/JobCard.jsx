@@ -10,54 +10,46 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import { BsCircleFill } from "react-icons/bs";
 import ListItemText from "@mui/material/ListItemText";
 import AppLink from "../shared/AppLink";
+import { formatDate } from "../../utils/dateHelper";
 
-const JobCard = ({ job, children }) => {
-    const convertDate = (timestamp) => {
-        if (timestamp === null) {
-            return "today";
-        }
-        const date = new Date(parseInt(timestamp, 10));
-        return date.toLocaleDateString("de");
-    };
-
-    return (
-        <Box sx={{ width: "100%", padding: "10px" }}>
-            <Card
-                variant="outlined"
-                onContextMenu={(e) => e.preventDefault()}
-                sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+const JobCard = ({ job, children }) => (
+    <Box sx={{ width: "100%", padding: "10px" }}>
+        <Card
+            variant="outlined"
+            onContextMenu={(e) => e.preventDefault()}
+            sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+        >
+            <AppLink
+                href="/jobs/[id]"
+                as={`/jobs/${job._id}`}
             >
-                <AppLink
-                    href="/jobs/[id]"
-                    as={`/jobs/${job._id}`}
-                >
-                    <CardContent sx={{ display: "flex" }}>
-                        <Box sx={{ width: "200px" }}>
-                            {`${convertDate(job.startDate)} - ${convertDate(job.endDate)}`}
-                        </Box>
-                        <Box>
-                            <Box sx={{ paddingLeft: "15px", fontWeight: "bold" }}>{job.company}</Box>
-                            <Box sx={{ paddingLeft: "15px", marginTop: "10px" }}>{job.position}</Box>
-                            <List>
-                                {job.bullets.map((item) => (
-                                    <ListItem key={item}>
-                                        <ListItemIcon sx={{ minWidth: "30px" }}><BsCircleFill /></ListItemIcon>
-                                        <ListItemText primary={item} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Box>
-                    </CardContent>
-                </AppLink>
-                { children && (
-                    <CardActions>
-                        {children}
-                    </CardActions>
-                )}
-            </Card>
-        </Box>
-    );
-};
+                <CardContent sx={{ display: "flex" }}>
+                    <Box sx={{ width: "200px" }}>
+                        <div>{`${formatDate(job.startDate)} - ${formatDate(job.endDate)}`}</div>
+                        <div>{`(${job.months})`}</div>
+                    </Box>
+                    <Box>
+                        <Box sx={{ paddingLeft: "15px", fontWeight: "bold" }}>{job.company}</Box>
+                        <Box sx={{ paddingLeft: "15px", marginTop: "10px" }}>{job.position}</Box>
+                        <List>
+                            {job.bullets.map((item) => (
+                                <ListItem key={item}>
+                                    <ListItemIcon sx={{ minWidth: "30px" }}><BsCircleFill /></ListItemIcon>
+                                    <ListItemText primary={item} />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Box>
+                </CardContent>
+            </AppLink>
+            {children && (
+                <CardActions>
+                    {children}
+                </CardActions>
+            )}
+        </Card>
+    </Box>
+);
 
 JobCard.propTypes = {
     job: PropTypes.shape({
@@ -67,6 +59,7 @@ JobCard.propTypes = {
         bullets: PropTypes.arrayOf(PropTypes.string),
         startDate: PropTypes.string,
         endDate: PropTypes.string,
+        months: PropTypes.string,
     }).isRequired,
     children: PropTypes.node,
 };

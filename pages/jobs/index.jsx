@@ -1,6 +1,5 @@
 import React from "react";
 import { getDataFromTree } from "@apollo/react-ssr";
-import Box from "@mui/material/Box";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -11,6 +10,7 @@ import BaseLayout from "../../layouts/BaseLayout";
 import { PROP_USER } from "../../constants/props";
 import withUser from "../../hoc/withUser";
 import AppLink from "../../components/shared/AppLink";
+import PageHeader from "../../components/shared/PageHeader";
 
 const Jobs = ({ user }) => {
     const { data } = useGetJobs();
@@ -19,11 +19,9 @@ const Jobs = ({ user }) => {
 
     return (
         <BaseLayout>
-            <Box sx={{ px: 1, pb: 4 }}>
-                <h1>Jobs</h1>
-            </Box>
+            <PageHeader>Jobs</PageHeader>
             <Stack direction="row" flexWrap="wrap" alignItems="stretch">
-                { jobs.map((job) => (
+                {jobs.map((job) => (
                     <JobCard key={job._id} job={job}>
                         { user && (
                             <>

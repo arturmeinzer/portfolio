@@ -85,6 +85,7 @@ export const GET_JOB = gql`
             bullets
             startDate
             endDate
+            months @client
         }
     }
 `;
@@ -98,6 +99,7 @@ export const GET_JOBS = gql`
             bullets
             startDate
             endDate
+            months @client
         }
     }
 `;

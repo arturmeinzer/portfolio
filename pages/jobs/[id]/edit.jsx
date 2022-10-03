@@ -7,6 +7,7 @@ import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import JobCreateForm from "../../../components/forms/job/JobCreateForm";
+import PageHeader from "../../../components/shared/PageHeader";
 
 const JobEdit = () => {
     const router = useRouter();
@@ -39,7 +40,7 @@ const JobEdit = () => {
 
     return (
         <BaseLayout>
-            <h1>Edit Job</h1>
+            <PageHeader>Edit Job</PageHeader>
             { data && (
                 <JobCreateForm
                     initialData={compileData(data.job)}

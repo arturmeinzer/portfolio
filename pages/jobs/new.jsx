@@ -6,13 +6,14 @@ import withAuth from "../../hoc/withAuth";
 import { useCreateJob } from "../../apollo/actions";
 import BaseLayout from "../../layouts/BaseLayout";
 import { ROLE_ADMIN } from "../../constants/roles";
+import PageHeader from "../../components/shared/PageHeader";
 
 const JobCreate = () => {
     const [createJob, { error }] = useCreateJob();
     const errorMessage = (err) => err.message;
     return (
         <BaseLayout>
-            <h1>Create new Job</h1>
+            <PageHeader>Create new Job</PageHeader>
             <JobCreateForm onSubmit={(data) => createJob({ variables: data })} />
             { error && <Alert severity="error">{errorMessage(error)}</Alert> }
         </BaseLayout>

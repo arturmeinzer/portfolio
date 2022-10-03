@@ -7,6 +7,7 @@ import ProjectCreateForm from "../../components/forms/project/ProjectCreateForm"
 import { useCreateProject } from "../../apollo/actions";
 import BaseLayout from "../../layouts/BaseLayout";
 import { ROLE_ADMIN } from "../../constants/roles";
+import PageHeader from "../../components/shared/PageHeader";
 
 const ProjectCreate = () => {
     const [createProject, { error }] = useCreateProject();
@@ -24,7 +25,7 @@ const ProjectCreate = () => {
 
     return (
         <BaseLayout>
-            <h1>Create new project</h1>
+            <PageHeader>Create new project</PageHeader>
             <ProjectCreateForm onSubmit={handleCreate} />
             { error && <Alert severity="error">{errorMessage(error)}</Alert> }
         </BaseLayout>

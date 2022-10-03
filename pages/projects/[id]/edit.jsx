@@ -9,6 +9,7 @@ import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import withMessage from "../../../hoc/withMessage";
+import PageHeader from "../../../components/shared/PageHeader";
 
 const ProjectEdit = ({ notify }) => {
     const router = useRouter();
@@ -30,7 +31,7 @@ const ProjectEdit = ({ notify }) => {
 
     return (
         <BaseLayout notify={notify}>
-            <h1>Edit Project</h1>
+            <PageHeader>Edit Project</PageHeader>
             { data && (
                 <ProjectCreateForm
                     initialData={data.project}

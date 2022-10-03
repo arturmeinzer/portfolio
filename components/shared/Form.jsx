@@ -6,7 +6,7 @@ const Form = ({ children }) => (
     <form>
         <Stack
             spacing={2}
-            sx={{ mb: 3 }}
+            sx={{ mb: 3, px: 1 }}
         >
             {children}
         </Stack>
