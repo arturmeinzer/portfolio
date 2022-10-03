@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Divider from "@mui/material/Divider";
 import PropTypes from "prop-types";
+import Stack from "@mui/material/Stack";
 import AppLink from "./AppLink";
 import withApollo from "../../hoc/withApollo";
 import ManagerDropDown from "./ManagerDropDown";
@@ -55,7 +56,7 @@ const NavBar = ({ user, userError }) => {
                     }}
                     >
                         <Brand />
-                        <Box sx={{ display: "flex", gap: "10px" }}>
+                        <Stack flexDirection="row" gap="10px">
                             { user && <ManagerDropDown /> }
                             <IconButton
                                 sx={{ border: "1px solid #aaa", borderRadius: "5px", color: "#aaa" }}
@@ -89,11 +90,11 @@ const NavBar = ({ user, userError }) => {
                                     </AppLink>
                                 </MenuItem>
                             </Menu>
-                        </Box>
+                        </Stack>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, justifyContent: "space-between", display: { xs: "none", md: "flex" } }}>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                        <Stack flexDirection="row" alignItems="center" gap="20px">
                             <Brand />
                             { pages.map((page) => (
                                 <AppLink
@@ -104,13 +105,8 @@ const NavBar = ({ user, userError }) => {
                                     {page.title}
                                 </AppLink>
                             ))}
-                        </Box>
-                        <Box sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "20px",
-                        }}
-                        >
+                        </Stack>
+                        <Stack flexDirection="row" alignItems="center" gap="20px">
                             { user && (
                                 <>
                                     <span>{`Welcome ${user.username}`}</span>
@@ -134,7 +130,7 @@ const NavBar = ({ user, userError }) => {
                                     </AppLink>
                                 </>
                             )}
-                        </Box>
+                        </Stack>
                     </Box>
                 </Toolbar>
             </Container>
