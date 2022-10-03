@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import BaseLayout from "../layouts/BaseLayout";
 
 const Home = () => (
@@ -23,7 +22,6 @@ const Home = () => (
                     </div>
                     <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                     <div className="avatar-container my-2">
-                        <Image alt="" src="https://via.placeholder.com/150" />
                         <span className="avatar-title">Filip Jerga</span>
                     </div>
                 </a>
@@ -35,7 +33,6 @@ const Home = () => (
                     </div>
                     <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                     <div className="avatar-container my-2">
-                        <Image alt="" src="https://via.placeholder.com/150" />
                         <span className="avatar-title">Filip Jerga</span>
                     </div>
                 </a>
@@ -47,7 +44,6 @@ const Home = () => (
                     </div>
                     <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                     <div className="avatar-container my-2">
-                        <Image alt="" src="https://via.placeholder.com/150" />
                         <span className="avatar-title">Filip Jerga</span>
                     </div>
                 </a>

@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Image from "next/image";
+import profilePic from "../../public/profile_small.jpg";
 
 const Hero = () => (
     <Box sx={{
@@ -33,19 +34,16 @@ const Hero = () => (
             </Box>
             <Box sx={{
                 display: { xs: "none", md: "block" },
-                width: "350px",
-                height: "350px",
             }}
             >
                 <Image
+                    width="350"
+                    height="350"
                     style={{
-                        width: "100%",
-                        height: "100%",
                         borderRadius: "50%",
-                        objectFit: "cover",
                     }}
-                    alt=""
-                    src="https://i.udemycdn.com/course/750x422/1652608_662b_8.jpg"
+                    alt="Profile picture"
+                    src={profilePic}
                 />
             </Box>
         </Container>

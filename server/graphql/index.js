@@ -62,6 +62,7 @@ exports.createApolloServer = () => {
     return new ApolloServer({
         typeDefs,
         resolvers,
+        cache: "bounded",
         context: ({ req }) => ({
             ...buildAuthContext(req),
             models: {

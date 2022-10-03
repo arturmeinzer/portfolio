@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material";
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Hero from "../components/shared/Hero";
 import Footer from "../components/shared/Footer";
 import NavBar from "../components/shared/NavBar";
@@ -31,13 +31,10 @@ const theme = createTheme({
 
 const BaseLayout = ({ children, isHome }) => (
     <ThemeProvider theme={theme}>
-        <Box sx={{
-            minHeight: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-        }}
+        <Stack
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{ minHeight: "100%" }}
         >
             <NavBar />
             { isHome && <Hero /> }
@@ -45,7 +42,7 @@ const BaseLayout = ({ children, isHome }) => (
                 {children}
             </Container>
             <Footer />
-        </Box>
+        </Stack>
     </ThemeProvider>
 );
 
