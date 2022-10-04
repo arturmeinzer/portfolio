@@ -25,17 +25,14 @@ const Hero = () => (
                 <h1>
                     Hey I&apos;m Artur.
                     <br />
-                    Experienced full stack developer
+                    Experienced Full Stack Developer
                 </h1>
                 <h5>Check my portfolio and video tutorials</h5>
                 <Box sx={{ marginTop: "50px" }}>
                     <Button size="large">See my work</Button>
                 </Box>
             </Box>
-            <Box sx={{
-                display: { xs: "none", md: "block" },
-            }}
-            >
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
                 <Image
                     width="350"
                     height="350"

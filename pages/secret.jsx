@@ -9,6 +9,6 @@ const Secret = withAuth(() => (
     <BaseLayout>
         <h1>Secret page</h1>
     </BaseLayout>
-), ROLE_ADMIN);
+), ROLE_ADMIN, { ssr: true });
 
 export default withApollo(Secret);

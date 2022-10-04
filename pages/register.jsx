@@ -7,6 +7,7 @@ import Redirect from "../components/shared/Redirect";
 import BaseLayout from "../layouts/BaseLayout";
 import { useRegister } from "../apollo/actions";
 import PageHeader from "../components/shared/PageHeader";
+import { REGISTERED } from "../constants/messages";
 
 const Register = () => {
     const [registerUser, { data, error }] = useRegister();
@@ -20,9 +21,10 @@ const Register = () => {
                 <RegisterForm onSubmit={(registerData) => {
                     registerUser({ variables: registerData }).catch(() => {});
                 }}
-                />
-                { data && data.register && <Redirect to="/login" /> }
-                { error && <Alert severity="error">{errorMessage(error)}</Alert>}
+                >
+                    { error && <Alert severity="error">{errorMessage(error)}</Alert>}
+                </RegisterForm>
+                { data && data.register && <Redirect to="/login" message={REGISTERED} /> }
             </Container>
         </BaseLayout>
     );

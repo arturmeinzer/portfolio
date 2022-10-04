@@ -1,4 +1,5 @@
 import React from "react";
+/*
 import {
     Document,
     Page,
@@ -6,7 +7,6 @@ import {
     Text,
     StyleSheet,
 } from "@react-18-pdf/renderer";
-import BaseLayout from "../layouts/BaseLayout";
 
 const styles = StyleSheet.create({
     page: {
@@ -19,9 +19,17 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
 });
+*/
+
+import BaseLayout from "../layouts/BaseLayout";
+import PageHeader from "../components/shared/PageHeader";
 
 const CV = () => (
     <BaseLayout>
+        <PageHeader>
+            Work in Progress
+        </PageHeader>
+        {/*
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.section}>
@@ -32,6 +40,7 @@ const CV = () => (
                 </View>
             </Page>
         </Document>
+         */}
     </BaseLayout>
 );
 

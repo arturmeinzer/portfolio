@@ -20,4 +20,6 @@ const JobCreate = () => {
     );
 };
 
-export default withApollo(withAuth(JobCreate, [ROLE_ADMIN]));
+export default withApollo(
+    withAuth(JobCreate, [ROLE_ADMIN], { ssr: true }),
+);

@@ -47,11 +47,12 @@ const BaseLayout = ({ children, isHome }) => (
 );
 
 BaseLayout.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     isHome: PropTypes.bool,
 };
 
 BaseLayout.defaultProps = {
+    children: null,
     isHome: false,
 };
 

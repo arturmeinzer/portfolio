@@ -32,4 +32,6 @@ const ProjectCreate = () => {
     );
 };
 
-export default withApollo(withAuth(ProjectCreate, [ROLE_ADMIN]));
+export default withApollo(
+    withAuth(ProjectCreate, [ROLE_ADMIN], { ssr: true }),
+);

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 import Form from "../../shared/Form";
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, children }) => {
     const { register, handleSubmit } = useForm();
 
     return (
@@ -41,12 +41,18 @@ const LoginForm = ({ onSubmit }) => {
             >
                 Submit
             </Button>
+            {children}
         </Form>
     );
 };
 
 LoginForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    children: PropTypes.node,
+};
+
+LoginForm.defaultProps = {
+    children: null,
 };
 
 export default LoginForm;

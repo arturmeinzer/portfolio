@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import Form from "../../shared/Form";
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, children }) => {
     const { register, handleSubmit } = useForm();
 
     return (
@@ -62,12 +62,18 @@ const RegisterForm = ({ onSubmit }) => {
             >
                 Submit
             </Button>
+            {children}
         </Form>
     );
 };
 
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    children: PropTypes.node,
+};
+
+RegisterForm.defaultProps = {
+    children: null,
 };
 
 export default RegisterForm;
