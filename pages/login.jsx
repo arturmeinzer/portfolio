@@ -15,6 +15,18 @@ const Login = () => {
     const router = useRouter();
     const { message } = router.query;
 
+    const showAlert = useCallback(() => {
+        if (error) {
+            return <Alert severity="error">{error.message}</Alert>;
+        }
+
+        if (message) {
+            return <Alert severity={MESSAGES[message].severity}>{MESSAGES[message].value}</Alert>;
+        }
+
+        return null;
+    }, [error, message]);
+
     const disposeMessage = useCallback(() => {
         router.replace("/login", "/login", { shallow: true });
     }, [router]);
@@ -33,8 +45,6 @@ const Login = () => {
         };
     }, [message, disposeMessage]);
 
-    const errorMessage = (err) => err.message;
-
     return (
         <BaseLayout>
             <Container sx={{ width: "500px" }}>
@@ -43,14 +53,7 @@ const Login = () => {
                     login({ variables: loginData }).catch(() => {});
                 }}
                 >
-                    { error && <Alert severity="error">{errorMessage(error)}</Alert> }
-                    { message && (
-                        <Alert
-                            severity={MESSAGES[message].severity}
-                        >
-                            {MESSAGES[message].value}
-                        </Alert>
-                    )}
+                    {showAlert()}
                 </LoginForm>
                 { data && data.login && <Redirect to="/" />}
             </Container>

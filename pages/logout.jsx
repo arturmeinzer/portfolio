@@ -9,6 +9,7 @@ import BaseLayout from "../layouts/BaseLayout";
 const Logout = ({ apollo }) => {
     const [logout] = useLogout();
     const router = useRouter();
+
     useEffect(() => {
         logout().then(() => {
             apollo.resetStore().then(() => {

@@ -11,7 +11,6 @@ import { REGISTERED } from "../constants/messages";
 
 const Register = () => {
     const [registerUser, { data, error }] = useRegister();
-
     const errorMessage = (err) => err.message;
 
     return (
