@@ -3,6 +3,8 @@ const projectFields = `
     content: String!
     techStack: [String]
     github: String
+    website: String
+    images: [String]
 `;
 
 exports.projectTypes = `

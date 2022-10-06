@@ -20,6 +20,8 @@ export const GET_PROJECTS = gql`
             content
             techStack
             github
+            website
+            images
         }
     }
 `;

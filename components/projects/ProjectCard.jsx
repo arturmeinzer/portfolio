@@ -3,12 +3,26 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import IconButton from "@mui/material/IconButton";
 import { BsGithub } from "react-icons/bs";
 import Stack from "@mui/material/Stack";
+import ImageGallery from "react-image-gallery";
+import { CardHeader } from "@mui/material";
+import Button from "@mui/material/Button";
+import { FiExternalLink } from "react-icons/fi";
 import TechStack from "../shared/TechStack";
 import AppLink from "../shared/AppLink";
+
+const images = [
+    {
+        original: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+    },
+    {
+        original: "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg",
+    },
+    {
+        original: "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_1280.jpg",
+    },
+];
 
 const ProjectCard = ({ project, children }) => (
     <Box sx={{ width: { xs: "100%", md: "33%" } }}>
@@ -26,29 +40,49 @@ const ProjectCard = ({ project, children }) => (
                     href="/projects/[id]"
                     as={`/projects/${project._id}`}
                 >
-                    <CardContent sx={{ flexGrow: 1 }}>
-                        <h3>{project.title}</h3>
-                        <p>{project.content}</p>
-                    </CardContent>
-                    <Box sx={{ background: "#D6EAF8", padding: "10px" }}>
-                        {project.techStack && <TechStack iconsArray={project.techStack} />}
-                    </Box>
+                    <CardHeader title={project.title} />
                 </AppLink>
+                <ImageGallery
+                    items={images}
+                    showThumbnails={false}
+                    showBullets
+                    showPlayButton={false}
+                    disableKeyDown
+                />
+                <Box sx={{ background: "#D6EAF8", padding: "10px" }}>
+                    {project.techStack && <TechStack iconsArray={project.techStack} />}
+                </Box>
                 <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-                    <Stack direction="row" spacing={1}>
-                        {children}
-                    </Stack>
+                    <Button
+                        variant="outlined"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            window.open(project.website);
+                        }}
+                        endIcon={<FiExternalLink />}
+                    >
+                        View
+                    </Button>
                     {project.github && (
-                        <IconButton
+                        <Button
+                            variant="outlined"
                             onClick={(event) => {
                                 event.preventDefault();
                                 window.open(project.github);
                             }}
+                            endIcon={<BsGithub />}
                         >
-                            <BsGithub />
-                        </IconButton>
+                            Github
+                        </Button>
                     )}
                 </CardActions>
+                {children && (
+                    <CardActions>
+                        <Stack direction="row" spacing={1}>
+                            {children}
+                        </Stack>
+                    </CardActions>
+                )}
             </Card>
         </Box>
     </Box>
@@ -60,6 +94,8 @@ ProjectCard.propTypes = {
         title: PropTypes.string,
         content: PropTypes.string,
         techStack: PropTypes.arrayOf(PropTypes.string),
+        images: PropTypes.arrayOf(PropTypes.string),
+        website: PropTypes.string,
         github: PropTypes.string,
     }).isRequired,
     children: PropTypes.node,

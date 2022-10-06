@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
-const { ROLE_ADMIN } = require("../../constants/roles");
-
-const user1Id = mongoose.Types.ObjectId();
-const user2Id = mongoose.Types.ObjectId();
+const {
+    ROLE_ADMIN,
+    ROLE_GUEST,
+} = require("../../constants/roles");
 
 const data = {
     users: [
         {
-            _id: user1Id,
             email: "artur.meinzer@web.de",
             name: "Artur Meinzer",
             username: "Artur99",
@@ -16,13 +15,12 @@ const data = {
             role: ROLE_ADMIN,
         },
         {
-            _id: user2Id,
             email: "artur.meinzer1@web.de",
             name: "Test User",
             username: "Test99",
             info: "Hello I am Test and I am a test",
             password: "test123!",
-            role: ROLE_ADMIN,
+            role: ROLE_GUEST,
         },
     ],
     projects: [
@@ -30,11 +28,14 @@ const data = {
             title: "Porfolio Page",
             content: "Test content",
             techStack: ["javascript", "react", "nextjs", "graphql", "mongodb"],
+            website: "https://artur-meinzer.de",
+            github: "https://github.com/arturmeinzer/portfolio",
         },
         {
             title: "Sudoku App",
             content: "Some content",
             techStack: ["javascript", "react", "firebase"],
+            website: "https://sudoku.artur-meinzer.de",
             github: "https://github.com/arturmeinzer/sudoku",
         },
     ],
@@ -124,7 +125,7 @@ const data = {
                 "Erhöhung der Performance für einen schnelleren Seitenaufruf",
             ],
             startDate: new Date("2019-10-01"),
-            endDate: new Date("2020-04-30"),
+            endDate: new Date("2020-03-31"),
         },
         {
             company: "Kaffee Partner GmbH",
