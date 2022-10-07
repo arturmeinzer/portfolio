@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Modal } from "@mui/material";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";

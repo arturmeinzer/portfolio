@@ -17,7 +17,7 @@ app.prepare().then(async () => {
     middlewares.init(server, db);
 
     await apolloServer.start();
-    apolloServer.applyMiddleware({ app: server });
+    apolloServer.applyMiddleware({ path: "/graphql", app: server });
 
     server.all("*", (req, res) => handle(req, res));
 
