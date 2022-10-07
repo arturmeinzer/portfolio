@@ -8,6 +8,7 @@ import {
     FaLinkedin,
     FaXing,
 } from "react-icons/fa";
+import ExternalLink from "./ExternalLink";
 
 const socialLinks = [
     {
@@ -50,13 +51,14 @@ const Footer = () => (
         }}
         >
             {socialLinks.map((item) => (
-                <IconButton
-                    key={item.url}
-                    onClick={() => window.open(item.url)}
-                    sx={{ color: "inherit" }}
-                >
-                    {item.icon}
-                </IconButton>
+                <ExternalLink href={item.url}>
+                    <IconButton
+                        key={item.url}
+                        sx={{ color: "inherit" }}
+                    >
+                        {item.icon}
+                    </IconButton>
+                </ExternalLink>
             ))}
         </Box>
     </Container>

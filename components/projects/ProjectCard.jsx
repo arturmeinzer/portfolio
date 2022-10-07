@@ -12,18 +12,14 @@ import { FiExternalLink } from "react-icons/fi";
 import IconButton from "@mui/material/IconButton";
 import TechStack from "../shared/TechStack";
 import AppLink from "../shared/AppLink";
+import ExternalLink from "../shared/ExternalLink";
 
 const ProjectCard = ({ project, children }) => (
     <Box sx={{ width: { xs: "100%", md: "33%" } }}>
         <Box sx={{ margin: "0 10px", height: "100%" }}>
             <Card
                 variant="outlined"
-                onContextMenu={(e) => e.preventDefault()}
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                }}
+                sx={{ display: "flex", flexDirection: "column", height: "100%" }}
             >
                 <AppLink
                     href="/projects/[id]"
@@ -31,13 +27,13 @@ const ProjectCard = ({ project, children }) => (
                 >
                     <CardHeader title={project.title} />
                 </AppLink>
-                <Box sx={{ height: "200px" }}>
+                <Box sx={{ flexGrow: 1 }}>
                     <ImageGallery
-                        items={project.images.map((image) => ({ original: image, originalHeight: "200px" }))}
+                        items={project.images.map((image) => ({ original: image }))}
                         showThumbnails={false}
+                        showPlayButton={false}
                         showBullets={project.images.length > 1}
                         showFullscreenButton={project.images.length > 1}
-                        showPlayButton={false}
                         disableKeyDown
                     />
                 </Box>
@@ -49,34 +45,24 @@ const ProjectCard = ({ project, children }) => (
                         href="/projects/[id]"
                         as={`/projects/${project._id}`}
                     >
-                        <Button
-                            variant="outlined"
-                        >
+                        <Button variant="outlined">
                             Learn More
                         </Button>
                     </AppLink>
                     <Box>
                         {project.website && (
-                            <IconButton
-                                variant="outlined"
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    window.open(project.website);
-                                }}
-                            >
-                                <FiExternalLink />
-                            </IconButton>
+                            <ExternalLink href={project.website}>
+                                <IconButton variant="outlined">
+                                    <FiExternalLink />
+                                </IconButton>
+                            </ExternalLink>
                         )}
                         {project.github && (
-                            <IconButton
-                                variant="outlined"
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    window.open(project.github);
-                                }}
-                            >
-                                <BsGithub />
-                            </IconButton>
+                            <ExternalLink href={project.github}>
+                                <IconButton variant="outlined">
+                                    <BsGithub />
+                                </IconButton>
+                            </ExternalLink>
                         )}
                     </Box>
                 </CardActions>
