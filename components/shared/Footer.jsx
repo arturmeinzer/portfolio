@@ -51,11 +51,8 @@ const Footer = () => (
         }}
         >
             {socialLinks.map((item) => (
-                <ExternalLink href={item.url}>
-                    <IconButton
-                        key={item.url}
-                        sx={{ color: "inherit" }}
-                    >
+                <ExternalLink key={item.url} href={item.url}>
+                    <IconButton sx={{ color: "inherit" }}>
                         {item.icon}
                     </IconButton>
                 </ExternalLink>
