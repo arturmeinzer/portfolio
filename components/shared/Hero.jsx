@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Image from "next/image";
 import profilePic from "../../public/profile_small.jpg";
+import AppLink from "./AppLink";
+import Typography from "@mui/material/Typography";
 
 const Hero = () => (
     <Box sx={{
@@ -22,25 +24,26 @@ const Hero = () => (
             disableGutters
         >
             <Box>
-                <h1>
+                <Typography variant="h3" component="h1">
                     Hey I&apos;m Artur.
                     <br />
                     Experienced Full Stack Developer
-                </h1>
-                <h5>Check my portfolio and video tutorials</h5>
+                </Typography>
                 <Box sx={{ marginTop: "50px" }}>
-                    <Button size="large">See my work</Button>
+                    <AppLink href="/projects">
+                        <Button size="large">See my work</Button>
+                    </AppLink>
                 </Box>
             </Box>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
                 <Image
                     width="350"
                     height="350"
+                    alt="Profile picture"
+                    src={profilePic}
                     style={{
                         borderRadius: "50%",
                     }}
-                    alt="Profile picture"
-                    src={profilePic}
                 />
             </Box>
         </Container>

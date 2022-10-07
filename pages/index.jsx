@@ -4,8 +4,11 @@ import { ListItem } from "@mui/material";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import BaseLayout from "../layouts/BaseLayout";
 import DevIcon from "../components/shared/DevIcon";
+import ExternalLink from "../components/shared/ExternalLink";
 
 const techStack = [
     {
@@ -46,23 +49,31 @@ const techStack = [
     },
 ];
 
+const style = {
+    border: "1px solid #ddd",
+    backgroundColor: "grey.100",
+    lineHeight: "30px",
+    borderRadius: "5px",
+    padding: "20px",
+};
+
 const Home = () => (
     <BaseLayout isHome>
-        <Container sx={{ width: "800px", lineHeight: "30px" }}>
-            <h1>About Me</h1>
+        <Container sx={{ ...style, mb: 5 }} maxWidth="md">
+            <Typography variant="h3" component="h2">About Me</Typography>
             <p>
                 Hello! My name is Artur and I enjoy creating things that live on the internet.
                 My interest in web development started back in 2005 when I started an internship
                 at an&nbsp;
-                <a href="https://www.md-systemhaus.de">IT system house</a>
+                <ExternalLink href="https://www.md-systemhaus.de">IT system house</ExternalLink>
                 .
                 Turned out that I love creating things out of thin air, that other people can use.
             </p>
             <p>
                 Fast-forward to today, and I&apos;ve had the privilege of working at&nbsp;
-                <a href="https://www.tourist-online.de/">a tourist company</a>
+                <ExternalLink href="https://www.tourist-online.de/">a tourist company</ExternalLink>
                 ,&nbsp;
-                <a href="https://www.check24.de/">a huge corporation</a>
+                <ExternalLink href="https://www.check24.de/">a huge corporation</ExternalLink>
                 &nbsp;and a lot of freelance projects.
                 My main focus these days is working remotely as a
                 Freelancer for a variety of clients.
@@ -80,6 +91,17 @@ const Home = () => (
                     </ListItem>
                 ))}
             </List>
+        </Container>
+        <Container sx={{ ...style, textAlign: "center" }} maxWidth="md">
+            <Typography variant="h3" component="h2">Get in Touch</Typography>
+            <p>
+                I&apos;m constantly looking for new opportunities and interesting projects,
+                especially frontend projects.
+                <br />
+                Whether you want to hire me or just want to say hi,
+                I&apos;ll try my best to get back at you!
+            </p>
+            <a href="mailto:artur.meinzer@web.de"><Button>Say Hello</Button></a>
         </Container>
     </BaseLayout>
 );
