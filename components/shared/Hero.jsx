@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Image from "next/image";
+import Typography from "@mui/material/Typography";
 import profilePic from "../../public/profile_small.jpg";
 import AppLink from "./AppLink";
-import Typography from "@mui/material/Typography";
 
 const Hero = () => (
     <Box sx={{
