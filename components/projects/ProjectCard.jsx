@@ -9,20 +9,9 @@ import ImageGallery from "react-image-gallery";
 import { CardHeader } from "@mui/material";
 import Button from "@mui/material/Button";
 import { FiExternalLink } from "react-icons/fi";
+import IconButton from "@mui/material/IconButton";
 import TechStack from "../shared/TechStack";
 import AppLink from "../shared/AppLink";
-
-const images = [
-    {
-        original: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-    },
-    {
-        original: "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg",
-    },
-    {
-        original: "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_1280.jpg",
-    },
-];
 
 const ProjectCard = ({ project, children }) => (
     <Box sx={{ width: { xs: "100%", md: "33%" } }}>
@@ -42,39 +31,54 @@ const ProjectCard = ({ project, children }) => (
                 >
                     <CardHeader title={project.title} />
                 </AppLink>
-                <ImageGallery
-                    items={images}
-                    showThumbnails={false}
-                    showBullets
-                    showPlayButton={false}
-                    disableKeyDown
-                />
+                <Box sx={{ height: "200px" }}>
+                    <ImageGallery
+                        items={project.images.map((image) => ({ original: image, originalHeight: "200px" }))}
+                        showThumbnails={false}
+                        showBullets={project.images.length > 1}
+                        showFullscreenButton={project.images.length > 1}
+                        showPlayButton={false}
+                        disableKeyDown
+                    />
+                </Box>
                 <Box sx={{ background: "#D6EAF8", padding: "10px" }}>
                     {project.techStack && <TechStack iconsArray={project.techStack} />}
                 </Box>
                 <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-                    <Button
-                        variant="outlined"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            window.open(project.website);
-                        }}
-                        endIcon={<FiExternalLink />}
+                    <AppLink
+                        href="/projects/[id]"
+                        as={`/projects/${project._id}`}
                     >
-                        View
-                    </Button>
-                    {project.github && (
                         <Button
                             variant="outlined"
-                            onClick={(event) => {
-                                event.preventDefault();
-                                window.open(project.github);
-                            }}
-                            endIcon={<BsGithub />}
                         >
-                            Github
+                            Learn More
                         </Button>
-                    )}
+                    </AppLink>
+                    <Box>
+                        {project.website && (
+                            <IconButton
+                                variant="outlined"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    window.open(project.website);
+                                }}
+                            >
+                                <FiExternalLink />
+                            </IconButton>
+                        )}
+                        {project.github && (
+                            <IconButton
+                                variant="outlined"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    window.open(project.github);
+                                }}
+                            >
+                                <BsGithub />
+                            </IconButton>
+                        )}
+                    </Box>
                 </CardActions>
                 {children && (
                     <CardActions>

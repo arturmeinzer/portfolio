@@ -11,6 +11,7 @@ import {
 } from "react-icons/bs";
 import { useFieldArray } from "react-hook-form";
 import PropTypes from "prop-types";
+import Stack from "@mui/material/Stack";
 
 const JobBullets = ({ control, register }) => {
     const {
@@ -30,17 +31,16 @@ const JobBullets = ({ control, register }) => {
     }, [fields, append]);
 
     return (
-        <Box sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "5px",
-            border: "1px solid #bbb",
-            background: "#eee",
-            padding: "10px",
-            borderRadius: "5px",
-        }}
+        <Stack
+            gap="5px"
+            sx={{
+                border: "1px solid #bbb",
+                background: "grey.200",
+                padding: "10px",
+                borderRadius: "5px",
+            }}
         >
-            <h5>Bullet Points</h5>
+            <Box>Bullet Points</Box>
             {fields.map((field, index) => (
                 <OutlinedInput
                     key={field.id}
@@ -64,7 +64,9 @@ const JobBullets = ({ control, register }) => {
                                     >
                                         <BsFillArrowUpCircleFill />
                                     </IconButton>
-                                    <IconButton onClick={() => remove(index)}>
+                                    <IconButton
+                                        onClick={() => remove(index)}
+                                    >
                                         <BsFillTrashFill color="tomato" />
                                     </IconButton>
                                 </>
@@ -73,7 +75,7 @@ const JobBullets = ({ control, register }) => {
                     )}
                 />
             ))}
-        </Box>
+        </Stack>
     );
 };
 

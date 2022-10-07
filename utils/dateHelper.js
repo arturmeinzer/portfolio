@@ -7,8 +7,8 @@ export const formatDate = (date) => {
     return moment.unix(date / 1000).format("MMM YYYY");
 };
 
-const yearString = (numberYears) => numberYears > 1 ? "years" : "year";
-const monthString = (numberMonths) => numberMonths > 1 ? "months" : "month";
+const yearString = (numberYears) => (numberYears > 1 ? "years" : "year");
+const monthString = (numberMonths) => (numberMonths > 1 ? "months" : "month");
 
 export const monthDiff = (start, end) => {
     const startDate = moment.unix(start / 1000);

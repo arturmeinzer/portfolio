@@ -11,11 +11,19 @@ const Logout = ({ apollo }) => {
     const router = useRouter();
 
     useEffect(() => {
+        let subscribed = true;
+
         logout().then(() => {
             apollo.resetStore().then(() => {
-                router.push("/login");
+                if (subscribed) {
+                    router.push("/login");
+                }
             });
         });
+
+        return () => {
+            subscribed = false;
+        };
     }, [logout, apollo, router]);
 
     return (

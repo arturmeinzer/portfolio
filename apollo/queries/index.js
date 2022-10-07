@@ -8,6 +8,8 @@ export const GET_PROJECT = gql`
             content
             techStack
             github
+            website
+            images
         }
     }
 `;
@@ -32,18 +34,24 @@ export const CREATE_PROJECT = gql`
         $content: String!
         $techStack: [String]
         $github: String
+        $website: String
+        $images: [String]
     ) {
         createProject(input: {
             title: $title
             content: $content
             techStack: $techStack
             github: $github
+            website: $website
+            images: $images
         }) {
             _id
             title
             content
             techStack
             github
+            website
+            images
         }
     }
 `;
@@ -55,18 +63,24 @@ export const UPDATE_PROJECT = gql`
         $content: String!
         $techStack: [String]
         $github: String
+        $website: String
+        $images: [String]
     ) {
         updateProject(id: $id, input:{
             title: $title
             content: $content
             techStack: $techStack
             github: $github
+            website: $website
+            images: $images
         }) {
             _id
             title
             content
             techStack
             github
+            website
+            images
         }
     }
 `;

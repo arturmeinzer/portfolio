@@ -10,16 +10,41 @@ import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import withMessage from "../../../hoc/withMessage";
 import PageHeader from "../../../components/shared/PageHeader";
+import { handleImages } from "../../../utils/firebaseImageHandler";
 
 const ProjectEdit = ({ notify }) => {
     const router = useRouter();
     const { id } = router.query;
     const { data } = useGetProject({ variables: { id } });
     const [updateProject, { error }] = useUpdateProject();
-    const errorMessage = (err) => err.message;
 
-    const handleEdit = (projectData) => {
-        updateProject({ variables: { id, ...projectData } })
+    const resolveData = (initialData) => {
+        if (!initialData) {
+            return initialData;
+        }
+
+        const images = initialData.images.length > 0
+            ? initialData.images.map((image) => ({ url: image }))
+            : [];
+
+        return {
+            ...initialData,
+            images,
+        };
+    };
+
+    const handleEdit = async (projectData) => {
+        let images = [];
+        if (projectData.images.length > 0) {
+            images = await handleImages(projectData.images, data.project.images);
+        }
+
+        const updatedData = {
+            ...projectData,
+            images,
+        };
+
+        updateProject({ variables: { id, ...updatedData } })
             .then(async () => {
                 notify("Project updated successfully");
                 setTimeout(async () => {
@@ -34,11 +59,11 @@ const ProjectEdit = ({ notify }) => {
             <PageHeader>Edit Project</PageHeader>
             { data && (
                 <ProjectCreateForm
-                    initialData={data.project}
+                    initialData={resolveData(data.project)}
                     onSubmit={handleEdit}
                 />
             )}
-            { error && <Alert severity="error">{errorMessage(error)}</Alert> }
+            { error && <Alert severity="error">{error.message}</Alert> }
         </BaseLayout>
     );
 };

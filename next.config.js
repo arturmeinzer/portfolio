@@ -5,4 +5,7 @@ module.exports = {
     env: {
         BASE_URL: dev ? `http://localhost:${port}` : "https://artur-meinzer.de",
     },
+    images: {
+        domains: ["firebasestorage.googleapis.com"],
+    },
 };

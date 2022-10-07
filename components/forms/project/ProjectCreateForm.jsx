@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 import TechStackSelect from "./TechStackSelect";
 import Form from "../../shared/Form";
+import Images from "./Images";
 
 const ProjectCreateForm = ({ onSubmit, initialData }) => {
     const { control, register, handleSubmit } = useForm({
@@ -35,12 +36,23 @@ const ProjectCreateForm = ({ onSubmit, initialData }) => {
                 />
             </FormControl>
 
+            <Images control={control} register={register} />
+
             <FormControl fullWidth>
                 <InputLabel>TechStack</InputLabel>
                 <Controller
                     control={control}
                     name="techStack"
                     render={({ field }) => <TechStackSelect field={field} />}
+                />
+            </FormControl>
+
+            <FormControl fullWidth>
+                <InputLabel>Website</InputLabel>
+                <OutlinedInput
+                    label="Website"
+                    name="website"
+                    {...register("website")}
                 />
             </FormControl>
 

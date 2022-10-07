@@ -48,7 +48,7 @@ const techStack = [
 
 const Home = () => (
     <BaseLayout isHome>
-        <Container sx={{ width: "800px" }}>
+        <Container sx={{ width: "800px", lineHeight: "30px" }}>
             <h1>About Me</h1>
             <p>
                 Hello! My name is Artur and I enjoy creating things that live on the internet.
@@ -72,7 +72,7 @@ const Home = () => (
             </p>
             <List>
                 {techStack.map((item) => (
-                    <ListItem sx={{ padding: "5px" }}>
+                    <ListItem key={item.text} sx={{ padding: "5px" }}>
                         <ListItemIcon sx={{ minWidth: "30px" }}>
                             <DevIcon>{item.icon}</DevIcon>
                         </ListItemIcon>

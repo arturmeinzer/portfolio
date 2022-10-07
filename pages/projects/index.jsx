@@ -19,7 +19,7 @@ const Projects = ({ user }) => {
 
     return (
         <BaseLayout>
-            <PageHeader>Portfolio</PageHeader>
+            <PageHeader>Some Things I&apos;ve Built</PageHeader>
             <Stack
                 flexDirection="row"
                 flexWrap="wrap"
