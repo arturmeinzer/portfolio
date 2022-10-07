@@ -6,7 +6,7 @@ import { monthDiff } from "../utils/dateHelper";
 
 export default withApollo(
     ({ initialState }) => new ApolloClient({
-        uri: `${process.env.BASE_URL}/graphql`,
+        uri: `${process.env.BASE_URL}/api/graphql`,
         cache: new InMemoryCache().restore(initialState || {}),
         resolvers: {
             Job: {

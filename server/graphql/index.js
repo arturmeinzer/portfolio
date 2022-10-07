@@ -62,7 +62,6 @@ exports.createApolloServer = () => {
     return new ApolloServer({
         typeDefs,
         resolvers,
-        playground: true,
         introspection: true,
         cache: "bounded",
         context: ({ req }) => ({
