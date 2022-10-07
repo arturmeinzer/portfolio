@@ -3,13 +3,13 @@ import Modal from "@mui/material/modal";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { FaCloudUploadAlt } from "react-icons/fa";
+import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import ImageUploading from "react-images-uploading";
 import Image from "next/image";
-import IconButton from "@mui/material/IconButton";
-import { MdDelete } from "react-icons/md";
-import { Paper } from "@mui/material";
 
 const style = {
     position: "absolute",
