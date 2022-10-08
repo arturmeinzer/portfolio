@@ -12,7 +12,9 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Image from "next/image";
 import Stack from "@mui/material/Stack";
-import ImageUpload from "./ImageUpload";
+import dynamic from "next/dynamic";
+
+const ImageUpload = dynamic(() => import("./ImageUpload"));
 
 const Images = ({ control }) => {
     const [openUpload, setOpenUpload] = useState(false);
@@ -51,11 +53,13 @@ const Images = ({ control }) => {
             >
                 Upload
             </Button>
-            <ImageUpload
-                open={openUpload}
-                onClose={() => setOpenUpload(false)}
-                onSave={onSave}
-            />
+            {openUpload && (
+                <ImageUpload
+                    open
+                    onClose={() => setOpenUpload(false)}
+                    onSave={onSave}
+                />
+            )}
             <Stack flexDirection="row" flexWrap="wrap" gap="10px">
                 {fields.map((field, index) => (
                     <Stack key={field.id} flexDirection="row" sx={{ border: "1px solid #bbb", borderRadius: "5px" }}>

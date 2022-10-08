@@ -3,23 +3,33 @@ import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 import Container from "@mui/material/Container";
+import PropTypes from "prop-types";
 import BaseLayout from "../../../layouts/BaseLayout";
-import { useDeleteProject } from "../../../apollo/actions";
+import { useDeleteProject, useGetProject } from "../../../apollo/actions";
 import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import Form from "../../../components/shared/Form";
+import withMessage from "../../../hoc/withMessage";
 
-const ProjectDelete = () => {
+const ProjectDelete = ({ notify }) => {
     const router = useRouter();
     const { id } = router.query;
+    const { data } = useGetProject({ variables: { id } });
     const [deleteProject, { error }] = useDeleteProject();
-    const errorMessage = (err) => err.message;
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
+        if (data?.project?.images) {
+            const { deleteImages } = await import("../../../utils/firebaseImageHandler");
+            await deleteImages(data.project.images);
+        }
+
         deleteProject({ variables: { id } })
             .then(async () => {
-                await router.push("/projects");
+                notify("Project deleted successfully");
+                setTimeout(async () => {
+                    await router.push("/projects");
+                }, 2000);
             })
             .catch(() => {});
     };
@@ -36,10 +46,14 @@ const ProjectDelete = () => {
                         Yes
                     </Button>
                 </Form>
-                { error && <Alert severity="error">{errorMessage(error)}</Alert> }
+                { error && <Alert severity="error">{error.message}</Alert> }
             </Container>
         </BaseLayout>
     );
 };
 
-export default withApollo(withAuth(ProjectDelete, [ROLE_ADMIN]));
+ProjectDelete.propTypes = {
+    notify: PropTypes.func.isRequired,
+};
+
+export default withMessage(withApollo(withAuth(ProjectDelete, [ROLE_ADMIN])));

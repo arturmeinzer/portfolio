@@ -37,7 +37,7 @@ const getImage = async (image) => {
     return getDownloadURL(storageRef);
 };
 
-const deleteImage = async (image) => {
+export const deleteImage = async (image) => {
     const matches = image.match(/[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}\.(png|jpg)/gm);
     if (!matches[0]) {
         return;
@@ -46,17 +46,20 @@ const deleteImage = async (image) => {
     await deleteObject(storageRef);
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const handleImages = async (images, initialImages) => {
     const responseImages = await Promise.all(
         images.map((image) => getImage(image)),
     );
 
-    initialImages.forEach((image) => {
-        if (!responseImages.includes(image)) {
-            deleteImage(image);
-        }
-    });
+    if (initialImages) {
+        initialImages.forEach((image) => {
+            if (!responseImages.includes(image)) {
+                deleteImage(image);
+            }
+        });
+    }
 
     return responseImages;
 };
+
+export const deleteImages = async (images) => images.forEach((image) => deleteImage(image));
