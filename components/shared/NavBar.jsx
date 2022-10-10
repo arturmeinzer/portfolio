@@ -9,8 +9,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Divider from "@mui/material/Divider";
-import PropTypes from "prop-types";
 import Stack from "@mui/material/Stack";
 import AppLink from "./AppLink";
 import withApollo from "../../hoc/withApollo";
@@ -116,12 +114,10 @@ const NavBar = ({ user }) => {
 
 NavBar.propTypes = {
     user: PROP_USER,
-    userError: PropTypes.string,
 };
 
 NavBar.defaultProps = {
     user: null,
-    userError: null,
 };
 
 export default withApollo(withUser(NavBar));
