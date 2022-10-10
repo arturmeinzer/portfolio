@@ -6,24 +6,31 @@ const initialState = {
     show: false,
     message: "",
     severity: "success",
+    callback: null,
 };
 
 export default (WrappedComponent) => (props) => {
     const [snackBar, setSnackBar] = useState(initialState);
 
-    const notify = (message, severity = "success") => {
+    const notify = (message, callback = null, severity = "success") => {
         setSnackBar({
             show: true,
             message,
             severity,
+            callback,
         });
     };
 
     const handleClose = () => {
+        const { callback } = snackBar;
         setSnackBar({
             ...snackBar,
             show: false,
+            callback: null,
         });
+        if (typeof callback === "function") {
+            callback();
+        }
     };
 
     return (

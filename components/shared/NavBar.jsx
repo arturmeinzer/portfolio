@@ -25,20 +25,12 @@ const pages = [
         title: "Projects",
     },
     {
-        url: "/forum/categories",
-        title: "Categories",
-    },
-    {
         url: "/cv",
         title: "CV",
     },
-    {
-        url: "/ask-me",
-        title: "Ask me",
-    },
 ];
 
-const NavBar = ({ user, userError }) => {
+const NavBar = ({ user }) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
@@ -80,21 +72,17 @@ const NavBar = ({ user, userError }) => {
                                         </Typography>
                                     </MenuItem>
                                 ))}
-                                <Divider />
-                                <MenuItem>
-                                    <AppLink href="/register">Register</AppLink>
-                                </MenuItem>
-                                <MenuItem>
-                                    <AppLink href="/login">
-                                        <Button color="success">Login</Button>
-                                    </AppLink>
-                                </MenuItem>
                             </Menu>
                         </Stack>
                     </Box>
 
-                    <Box sx={{ flexGrow: 1, justifyContent: "space-between", display: { xs: "none", md: "flex" } }}>
-                        <Stack flexDirection="row" alignItems="center" gap="20px">
+                    <Box sx={{
+                        flexGrow: 1,
+                        justifyContent: "space-between",
+                        display: { xs: "none", md: "flex" },
+                    }}
+                    >
+                        <Stack flexDirection="row" alignItems="center" gap="40px">
                             <Brand />
                             { pages.map((page) => (
                                 <AppLink
@@ -114,18 +102,6 @@ const NavBar = ({ user, userError }) => {
                                     <AppLink href="/logout">
                                         <Button variant="contained" color="error">
                                             Logout
-                                        </Button>
-                                    </AppLink>
-                                </>
-                            )}
-                            { (userError || !user) && (
-                                <>
-                                    <AppLink href="/register">
-                                        Register
-                                    </AppLink>
-                                    <AppLink href="/login">
-                                        <Button color="success">
-                                            Login
                                         </Button>
                                     </AppLink>
                                 </>

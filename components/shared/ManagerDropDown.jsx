@@ -31,9 +31,6 @@ const ManagerDropDown = () => {
                 <MenuItem onClick={handleCloseUserMenu}>
                     <AppLink href="/jobs/new">Create Job</AppLink>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <AppLink href="/jobs">Jobs</AppLink>
-                </MenuItem>
             </Menu>
         </>
     );

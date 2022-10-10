@@ -14,8 +14,8 @@ const ProjectDetail = ({ query }) => {
     return (
         <BaseLayout>
             <Container>
-                <div className="jumbotron">
-                    <h1 className="display-3">{project.title}</h1>
+                <div>
+                    <h1>{project.title}</h1>
                     <p>{project.content}</p>
                     <TechStack iconsArray={project.techStack ? project.techStack : []} />
                 </div>

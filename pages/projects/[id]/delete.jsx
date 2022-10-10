@@ -26,10 +26,9 @@ const ProjectDelete = ({ notify }) => {
 
         deleteProject({ variables: { id } })
             .then(async () => {
-                notify("Project deleted successfully");
-                setTimeout(async () => {
-                    await router.push("/projects");
-                }, 2000);
+                notify("Project deleted successfully", () => {
+                    router.push("/projects");
+                });
             })
             .catch(() => {});
     };

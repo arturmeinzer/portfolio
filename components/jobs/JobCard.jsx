@@ -13,7 +13,7 @@ import AppLink from "../shared/AppLink";
 import { formatDate } from "../../utils/dateHelper";
 
 const JobCard = ({ job, children }) => (
-    <Box sx={{ width: "100%", padding: "10px" }}>
+    <Box sx={{ width: "100%", padding: "10px 5px" }}>
         <Card
             variant="outlined"
             onContextMenu={(e) => e.preventDefault()}

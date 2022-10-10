@@ -29,10 +29,9 @@ const ProjectCreate = ({ notify }) => {
 
         createProject({ variables: updatedData })
             .then(async () => {
-                notify("Project created successfully");
-                setTimeout(async () => {
-                    await router.push("/projects");
-                }, 2000);
+                notify("Project created successfully", () => {
+                    router.push("/projects");
+                });
             })
             .catch(() => {});
     };

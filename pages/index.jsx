@@ -51,7 +51,7 @@ const techStack = [
 
 const style = {
     border: "1px solid #ddd",
-    backgroundColor: "grey.100",
+    background: "#fff",
     lineHeight: "30px",
     borderRadius: "5px",
     padding: "20px",

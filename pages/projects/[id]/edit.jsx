@@ -46,10 +46,9 @@ const ProjectEdit = ({ notify }) => {
 
         updateProject({ variables: { id, ...updatedData } })
             .then(async () => {
-                notify("Project updated successfully");
-                setTimeout(async () => {
-                    await router.push("/projects");
-                }, 2000);
+                notify("Project updated successfully", () => {
+                    router.push("/projects");
+                });
             })
             .catch(() => {});
     };
