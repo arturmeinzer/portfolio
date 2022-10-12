@@ -6,10 +6,6 @@ import connectMongodbSession from "connect-mongodb-session";
 config();
 const MongoDBStore = connectMongodbSession(session);
 
-import project from "./models/project.js";
-import job from "./models/job.js";
-import user from "./models/user.js";
-
 export const connect = () => {
     mongoose.connect(process.env.DB_URI, () => {
         // eslint-disable-next-line no-console

@@ -12,4 +12,4 @@ const projectSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Project", projectSchema);
+export default mongoose.models.Project || mongoose.model("Project", projectSchema);

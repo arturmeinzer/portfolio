@@ -18,6 +18,7 @@ import {
     projectQueries, userMutations,
     userQueries,
 } from "../../server/graphql/resolvers";
+import * as db from "../../server/db/index.js";
 
 const typeDefs = gql`
     ${projectTypes}
@@ -61,6 +62,7 @@ const resolvers = {
 };
 
 const Cors = cors();
+db.connect();
 
 export const config = {
     api: {
