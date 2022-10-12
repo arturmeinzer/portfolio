@@ -5,7 +5,7 @@ export default {
     reactStrictMode: true,
     swcMinify: true,
     env: {
-        BASE_URL: dev ? `http://localhost:${port}` : "https://artur-meinzer.de",
+        BASE_URL: dev ? `http://localhost:${port}` : "https://www.artur-meinzer.de",
     },
     images: {
         domains: ["firebasestorage.googleapis.com"],
