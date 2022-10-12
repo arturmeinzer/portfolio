@@ -1,12 +1,7 @@
-import express from "express";
-import cors from "cors";
-import http from "http";
-import { ApolloServer, gql } from "apollo-server-express";
-import {
-    ApolloServerPluginDrainHttpServer,
-    ApolloServerPluginLandingPageGraphQLPlayground,
-} from "apollo-server-core";
+import cors from "micro-cors";
+import { ApolloServer, gql } from "apollo-server-micro";
 import mongoose from "mongoose";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import buildAuthContext from "../../server/graphql/context";
 import Project from "../../server/graphql/models/Project";
 import Job from "../../server/graphql/models/Job";
@@ -24,53 +19,60 @@ import {
     userQueries,
 } from "../../server/graphql/resolvers";
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const typeDefs = gql`
+    ${projectTypes}
+    ${jobTypes}
+    ${userTypes}
 
-const httpServer = http.createServer(app);
+    type Query {
+        project(id: ID): Project
+        projects: [Project]
+        job(id: ID): Job
+        jobs: [Job]
+        user: User
+    }
 
-const startApolloServer = async (appParam, httpServerParam) => {
-    const typeDefs = gql`
-        ${projectTypes}
-        ${jobTypes}
-        ${userTypes}
+    type Mutation {
+        createProject(input: ProjectInput): Project
+        updateProject(id: ID, input: ProjectInput): Project
+        deleteProject(id: ID): ID
 
-        type Query {
-            project(id: ID): Project
-            projects: [Project]
-            job(id: ID): Job
-            jobs: [Job]
-            user: User
-        }
+        createJob(input: JobInput): Job
+        updateJob(id: ID, input: JobInput): Job
+        deleteJob(id: ID): ID
 
-        type Mutation {
-            createProject(input: ProjectInput): Project
-            updateProject(id: ID, input: ProjectInput): Project
-            deleteProject(id: ID): ID
+        login(input: LoginInput): User
+        logout: Boolean
+        register(input: RegisterInput): String
+    }
+`;
 
-            createJob(input: JobInput): Job
-            updateJob(id: ID, input: JobInput): Job
-            deleteJob(id: ID): ID
+const resolvers = {
+    Query: {
+        ...projectQueries,
+        ...jobQueries,
+        ...userQueries,
+    },
+    Mutation: {
+        ...projectMutations,
+        ...jobMutations,
+        ...userMutations,
+    },
+};
 
-            login(input: LoginInput): User
-            logout: Boolean
-            register(input: RegisterInput): String
-        }
-    `;
+const Cors = cors();
 
-    const resolvers = {
-        Query: {
-            ...projectQueries,
-            ...jobQueries,
-            ...userQueries,
-        },
-        Mutation: {
-            ...projectMutations,
-            ...jobMutations,
-            ...userMutations,
-        },
-    };
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
+
+export default Cors(async (request, res) => {
+    if (request.method === "OPTIONS") {
+        res.end();
+        return;
+    }
 
     const server = new ApolloServer({
         typeDefs,
@@ -87,14 +89,12 @@ const startApolloServer = async (appParam, httpServerParam) => {
         }),
         plugins: [
             ApolloServerPluginLandingPageGraphQLPlayground(),
-            ApolloServerPluginDrainHttpServer({ httpServer: httpServerParam }),
+            // ApolloServerPluginDrainHttpServer({ httpServer }),
         ],
     });
 
     await server.start();
-    server.applyMiddleware({ app: appParam });
-};
-
-startApolloServer(app, httpServer);
-
-export default httpServer;
+    await server.createHandler({
+        path: "/api/graphql",
+    })(request, res);
+});
