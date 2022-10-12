@@ -1,22 +1,36 @@
+import express from "express";
+import cors from "cors";
+import http from "http";
 import { ApolloServer, gql } from "apollo-server-express";
-import mongoose from "mongoose";
 import {
-    projectQueries,
-    projectMutations,
-    jobQueries,
-    userMutations,
-    userQueries,
+    ApolloServerPluginDrainHttpServer,
+    ApolloServerPluginLandingPageGraphQLPlayground,
+} from "apollo-server-core";
+import mongoose from "mongoose";
+import buildAuthContext from "../../server/graphql/context";
+import Project from "../../server/graphql/models/Project";
+import Job from "../../server/graphql/models/Job";
+import User from "../../server/graphql/models/User";
+import {
+    jobTypes,
+    projectTypes,
+    userTypes,
+} from "../../server/graphql/types";
+import {
     jobMutations,
-} from "./resolvers/index.js";
-import { projectTypes, jobTypes, userTypes } from "./types/index.js";
-import buildAuthContext from "./context/index.js";
+    jobQueries,
+    projectMutations,
+    projectQueries, userMutations,
+    userQueries,
+} from "../../server/graphql/resolvers";
 
-// GraphqlModels
-import Project from "./models/Project.js";
-import User from "./models/User.js";
-import Job from "./models/Job.js";
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const createApolloServer = () => {
+const httpServer = http.createServer(app);
+
+const startApolloServer = async (appParam, httpServerParam) => {
     const typeDefs = gql`
         ${projectTypes}
         ${jobTypes}
@@ -29,16 +43,16 @@ const createApolloServer = () => {
             jobs: [Job]
             user: User
         }
-        
+
         type Mutation {
             createProject(input: ProjectInput): Project
             updateProject(id: ID, input: ProjectInput): Project
             deleteProject(id: ID): ID
-            
+
             createJob(input: JobInput): Job
             updateJob(id: ID, input: JobInput): Job
             deleteJob(id: ID): ID
-            
+
             login(input: LoginInput): User
             logout: Boolean
             register(input: RegisterInput): String
@@ -58,11 +72,11 @@ const createApolloServer = () => {
         },
     };
 
-    return new ApolloServer({
+    const server = new ApolloServer({
         typeDefs,
         resolvers,
-        introspection: true,
         cache: "bounded",
+        introspection: true,
         context: ({ req }) => ({
             ...buildAuthContext(req),
             models: {
@@ -71,7 +85,16 @@ const createApolloServer = () => {
                 User: new User(mongoose.model("User")),
             },
         }),
+        plugins: [
+            ApolloServerPluginLandingPageGraphQLPlayground(),
+            ApolloServerPluginDrainHttpServer({ httpServer: httpServerParam }),
+        ],
     });
+
+    await server.start();
+    server.applyMiddleware({ app: appParam });
 };
 
-export default createApolloServer;
+startApolloServer(app, httpServer);
+
+export default httpServer;

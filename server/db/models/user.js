@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const {
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import {
     ROLE_GUEST,
     ROLE_ADMIN,
-} = require("../../../constants/roles");
+} from "../../../constants/roles.js";
 
 const { Schema } = mongoose;
 
@@ -56,4 +56,4 @@ userSchema.methods.validatePassword = function (candidatePassword) {
     return bcrypt.compareSync(candidatePassword, this.password);
 };
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);

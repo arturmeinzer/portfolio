@@ -1,4 +1,4 @@
-const { Strategy } = require("passport-strategy");
+import { Strategy } from "passport-strategy";
 
 class GraphqlStrategy extends Strategy {
     constructor(verify) {
@@ -24,4 +24,4 @@ class GraphqlStrategy extends Strategy {
     }
 }
 
-module.exports = GraphqlStrategy;
+export default GraphqlStrategy;

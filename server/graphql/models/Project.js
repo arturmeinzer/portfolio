@@ -1,4 +1,4 @@
-const { ROLE_ADMIN } = require("../../../constants/roles");
+import { ROLE_ADMIN } from "../../../constants/roles.js";
 
 class Project {
     constructor(model, user) {
@@ -37,4 +37,4 @@ class Project {
     }
 }
 
-module.exports = Project;
+export default Project;

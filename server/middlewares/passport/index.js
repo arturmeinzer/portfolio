@@ -1,7 +1,7 @@
-const GraphqlStrategy = require("./strategies");
-const User = require("../../db/models/user");
+import GraphqlStrategy from "./strategies.js";
+import User from "../../db/models/user.js";
 
-exports.init = (passport) => {
+const init = (passport) => {
     passport.serializeUser((user, done) => {
         done(null, user.id);
     });
@@ -23,3 +23,5 @@ exports.init = (passport) => {
         });
     }));
 };
+
+export default init;

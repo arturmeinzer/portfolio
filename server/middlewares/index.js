@@ -1,9 +1,9 @@
-const session = require("express-session");
-const passport = require("passport");
-const myPassport = require("./passport");
+import session from "express-session";
+import passport from "passport";
+import initPassport from "./passport/index.js";
 
-exports.init = (server, db) => {
-    myPassport.init(passport);
+const init = (server, initSessionStore) => {
+    initPassport(passport);
 
     const sess = {
         name: "portfolio-session",
@@ -11,7 +11,7 @@ exports.init = (server, db) => {
         cookie: { maxAge: 2 * 60 * 60 * 1000 },
         resave: false,
         saveUninitialized: false,
-        store: db.initSessionStore(),
+        store: initSessionStore(),
     };
 
     if (process.env.NODE_ENV === "production") {
@@ -26,3 +26,5 @@ exports.init = (server, db) => {
     server.use(passport.initialize({}));
     server.use(passport.session({}));
 };
+
+export default init;

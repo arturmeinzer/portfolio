@@ -1,4 +1,2 @@
-module.exports = {
-    ROLE_ADMIN: "admin",
-    ROLE_GUEST: "guest",
-};
+export const ROLE_ADMIN = "admin";
+export const ROLE_GUEST = "guest";

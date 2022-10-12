@@ -25,6 +25,7 @@
                 "unnamedComponents": "arrow-function"
             }
         ],
-        "no-underscore-dangle": ["error", { "allow":  ["_id"]}]
+        "no-underscore-dangle": ["error", { "allow":  ["_id"]}],
+        "import/extensions": 0
     }
 }

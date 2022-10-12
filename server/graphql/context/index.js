@@ -1,4 +1,4 @@
-const passport = require("passport");
+import passport from "passport";
 
 const authenticateUser = (req, options) => new Promise((resolve, reject) => {
     const done = (err, user) => {
@@ -19,9 +19,11 @@ const authenticateUser = (req, options) => new Promise((resolve, reject) => {
     authFn();
 });
 
-exports.buildAuthContext = (req) => ({
+const buildAuthContext = (req) => ({
     authenticate: (options) => authenticateUser(req, options),
     logout: () => req.logout(),
     isAuthenticated: () => req.isAuthenticated(),
     getUser: () => req.user,
 });
+
+export default buildAuthContext;

@@ -1,20 +1,23 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
-const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
+import { config } from "dotenv";
+import mongoose from "mongoose";
+import session from "express-session";
+import connectMongodbSession from "connect-mongodb-session";
 
-require("./models/project");
-require("./models/job");
-require("./models/user");
+config();
+const MongoDBStore = connectMongodbSession(session);
 
-exports.connect = () => {
+import project from "./models/project.js";
+import job from "./models/job.js";
+import user from "./models/user.js";
+
+export const connect = () => {
     mongoose.connect(process.env.DB_URI, () => {
         // eslint-disable-next-line no-console
         console.log("connected to db");
     });
 };
 
-exports.initSessionStore = () => new MongoDBStore({
+export const initSessionStore = () => new MongoDBStore({
     uri: process.env.DB_URI,
     collection: "sessions",
 }, () => {});

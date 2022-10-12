@@ -7,7 +7,7 @@ const projectFields = `
     images: [String]
 `;
 
-exports.projectTypes = `
+export const projectTypes = `
     type Project {
         _id: ID,
         ${projectFields}
@@ -26,7 +26,7 @@ const jobFields = `
     endDate: String
 `;
 
-exports.jobTypes = `
+export const jobTypes = `
     type Job {
         _id: ID,
         ${jobFields}
@@ -37,7 +37,7 @@ exports.jobTypes = `
     }
 `;
 
-exports.userTypes = `
+export const userTypes = `
     type User {
         _id: ID,
         avatar: String
