@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import BaseLayout from "../../../layouts/BaseLayout";
 import ProjectCreateForm from "../../../components/forms/project/ProjectCreateForm";
 import { useGetProject, useUpdateProject } from "../../../apollo/actions";
-import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import withMessage from "../../../hoc/withMessage";
@@ -71,4 +70,6 @@ ProjectEdit.propTypes = {
     notify: PropTypes.func.isRequired,
 };
 
-export default withMessage(withApollo(withAuth(ProjectEdit, [ROLE_ADMIN])));
+export default withMessage(
+    withApollo(withAuth(ProjectEdit)),
+);

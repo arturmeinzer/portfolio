@@ -7,7 +7,6 @@ import withAuth from "../../hoc/withAuth";
 import ProjectCreateForm from "../../components/forms/project/ProjectCreateForm";
 import { useCreateProject } from "../../apollo/actions";
 import BaseLayout from "../../layouts/BaseLayout";
-import { ROLE_ADMIN } from "../../constants/roles";
 import PageHeader from "../../components/shared/PageHeader";
 import { handleImages } from "../../utils/firebaseImageHandler";
 import withMessage from "../../hoc/withMessage";
@@ -50,5 +49,5 @@ ProjectCreate.propTypes = {
 };
 
 export default withMessage(withApollo(
-    withAuth(ProjectCreate, [ROLE_ADMIN], { ssr: true }),
+    withAuth(ProjectCreate),
 ));

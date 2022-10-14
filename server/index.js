@@ -3,7 +3,6 @@ import next from "next";
 import createApolloServer from "./graphql/index.js";
 
 import * as db from "./db/index.js";
-import middlewaresInit from "./middlewares/index.js";
 
 const apolloServer = createApolloServer();
 const port = parseInt(process.env.NEXT_PUBLIC_PORT, 10) || 3000;
@@ -15,8 +14,6 @@ db.connect();
 
 app.prepare().then(async () => {
     const server = express();
-
-    middlewaresInit(server, db.initSessionStore);
 
     await apolloServer.start();
     apolloServer.applyMiddleware({ path: "/graphql", app: server });

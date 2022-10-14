@@ -5,7 +5,6 @@ import withApollo from "../../hoc/withApollo";
 import withAuth from "../../hoc/withAuth";
 import { useCreateJob } from "../../apollo/actions";
 import BaseLayout from "../../layouts/BaseLayout";
-import { ROLE_ADMIN } from "../../constants/roles";
 import PageHeader from "../../components/shared/PageHeader";
 
 const JobCreate = () => {
@@ -20,6 +19,4 @@ const JobCreate = () => {
     );
 };
 
-export default withApollo(
-    withAuth(JobCreate, [ROLE_ADMIN], { ssr: true }),
-);
+export default withApollo(withAuth(JobCreate));

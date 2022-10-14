@@ -4,7 +4,6 @@ import session from "express-session";
 import connectMongodbSession from "connect-mongodb-session";
 import "./models/project.js";
 import "./models/job.js";
-import "./models/user.js";
 
 config();
 const MongoDBStore = connectMongodbSession(session);

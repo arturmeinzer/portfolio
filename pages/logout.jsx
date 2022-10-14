@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import Container from "@mui/material/Container";
 import { useRouter } from "next/router";
+import { getAuth, signOut } from "firebase/auth";
 import PropTypes from "prop-types";
 import withApollo from "../hoc/withApollo";
-import { useLogout } from "../apollo/actions";
 import BaseLayout from "../layouts/BaseLayout";
 
 const Logout = ({ apollo }) => {
-    const [logout] = useLogout();
     const router = useRouter();
 
     useEffect(() => {
         let subscribed = true;
 
-        logout().then(() => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
             apollo.resetStore().then(() => {
                 if (subscribed) {
                     router.push("/login");
@@ -24,7 +24,7 @@ const Logout = ({ apollo }) => {
         return () => {
             subscribed = false;
         };
-    }, [logout, apollo, router]);
+    }, [apollo, router]);
 
     return (
         <BaseLayout>

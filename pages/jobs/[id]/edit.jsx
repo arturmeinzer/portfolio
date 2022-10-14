@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 import BaseLayout from "../../../layouts/BaseLayout";
 import { useGetJob, useUpdateJob } from "../../../apollo/actions";
-import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import JobCreateForm from "../../../components/forms/job/JobCreateForm";
@@ -52,4 +51,4 @@ const JobEdit = () => {
     );
 };
 
-export default withApollo(withAuth(JobEdit, [ROLE_ADMIN]));
+export default withApollo(withAuth(JobEdit));

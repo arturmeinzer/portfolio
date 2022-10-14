@@ -9,11 +9,9 @@ import {
     jobMutations,
 } from "./resolvers/index.js";
 import { projectTypes, jobTypes, userTypes } from "./types/index.js";
-import buildAuthContext from "./context/index.js";
 
 // GraphqlModels
 import Project from "./models/Project.js";
-import User from "./models/User.js";
 import Job from "./models/Job.js";
 
 const createApolloServer = () => {
@@ -64,11 +62,9 @@ const createApolloServer = () => {
         introspection: true,
         cache: "bounded",
         context: ({ req }) => ({
-            ...buildAuthContext(req),
             models: {
                 Project: new Project(mongoose.model("Project"), req.user),
                 Job: new Job(mongoose.model("Job"), req.user),
-                User: new User(mongoose.model("User")),
             },
         }),
     });

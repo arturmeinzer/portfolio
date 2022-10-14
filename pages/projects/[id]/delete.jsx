@@ -6,7 +6,6 @@ import Container from "@mui/material/Container";
 import PropTypes from "prop-types";
 import BaseLayout from "../../../layouts/BaseLayout";
 import { useDeleteProject, useGetProject } from "../../../apollo/actions";
-import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import Form from "../../../components/shared/Form";
@@ -55,4 +54,4 @@ ProjectDelete.propTypes = {
     notify: PropTypes.func.isRequired,
 };
 
-export default withMessage(withApollo(withAuth(ProjectDelete, [ROLE_ADMIN])));
+export default withMessage(withApollo(withAuth(ProjectDelete)));

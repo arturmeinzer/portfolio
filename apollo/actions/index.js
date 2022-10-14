@@ -1,15 +1,15 @@
-import { useLazyQuery, useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
     CREATE_PROJECT,
     DELETE_PROJECT,
     GET_PROJECTS,
     GET_PROJECT,
     UPDATE_PROJECT,
-    LOGIN,
-    LOGOUT,
-    GET_USER,
     CREATE_JOB,
-    GET_JOBS, UPDATE_JOB, DELETE_JOB, GET_JOB, REGISTER,
+    GET_JOBS,
+    UPDATE_JOB,
+    DELETE_JOB,
+    GET_JOB,
 } from "../queries";
 
 export const useGetProject = (options) => useQuery(GET_PROJECT, options);
@@ -41,17 +41,3 @@ export const useDeleteJob = () => useMutation(DELETE_JOB, {
         { query: GET_JOBS },
     ],
 });
-
-// Auth actions ----------------------
-export const useLogin = () => useMutation(LOGIN, {
-    update(cache, { data: { login } }) {
-        cache.writeQuery({
-            query: GET_USER,
-            data: { user: login },
-        });
-    },
-});
-export const useLogout = () => useMutation(LOGOUT);
-export const useRegister = () => useMutation(REGISTER);
-export const useLazyGetUser = () => useLazyQuery(GET_USER);
-export const useGetUser = () => useQuery(GET_USER);

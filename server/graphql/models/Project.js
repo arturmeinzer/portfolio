@@ -1,10 +1,7 @@
-import { ROLE_ADMIN } from "../../../constants/roles.js";
-
 class Project {
     constructor(model, user) {
         this.Model = model;
         this.user = user;
-        this.rights = [ROLE_ADMIN];
     }
 
     getAll() {
@@ -16,23 +13,14 @@ class Project {
     }
 
     create(data) {
-        if (!this.user || !this.rights.includes(this.user.role)) {
-            throw new Error("Not authorized!");
-        }
         return this.Model.create(data);
     }
 
     findAndUpdate(id, data) {
-        if (!this.user || !this.rights.includes(this.user.role)) {
-            throw new Error("Not authorized!");
-        }
         return this.Model.findOneAndUpdate({ _id: id }, data, { new: true, runValidators: true });
     }
 
     findAndDelete(id) {
-        if (!this.user || !this.rights.includes(this.user.role)) {
-            throw new Error("Not authorized!");
-        }
         return this.Model.findOneAndRemove({ _id: id });
     }
 }

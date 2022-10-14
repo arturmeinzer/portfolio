@@ -1,28 +1,4 @@
-const mongoose = require("mongoose");
-const {
-    ROLE_ADMIN,
-    ROLE_GUEST,
-} = require("../../constants/roles");
-
 const data = {
-    users: [
-        {
-            email: "artur.meinzer@web.de",
-            name: "Artur Meinzer",
-            username: "Artur99",
-            info: "Hello I am Artur and I am a developer",
-            password: "test123!",
-            role: ROLE_ADMIN,
-        },
-        {
-            email: "artur.meinzer1@web.de",
-            name: "Test User",
-            username: "Test99",
-            info: "Hello I am Test and I am a test",
-            password: "test123!",
-            role: ROLE_GUEST,
-        },
-    ],
     projects: [
         {
             title: "Porfolio Page",

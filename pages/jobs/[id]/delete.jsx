@@ -5,7 +5,6 @@ import Alert from "@mui/material/Alert";
 import Container from "@mui/material/Container";
 import BaseLayout from "../../../layouts/BaseLayout";
 import { useDeleteJob } from "../../../apollo/actions";
-import { ROLE_ADMIN } from "../../../constants/roles";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import Form from "../../../components/shared/Form";
@@ -42,4 +41,4 @@ const JobDelete = () => {
     );
 };
 
-export default withApollo(withAuth(JobDelete, [ROLE_ADMIN]));
+export default withApollo(withAuth(JobDelete));

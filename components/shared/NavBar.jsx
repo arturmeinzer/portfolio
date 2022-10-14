@@ -95,7 +95,7 @@ const NavBar = ({ user }) => {
                         <Stack flexDirection="row" alignItems="center" gap="20px">
                             { user && (
                                 <>
-                                    <span>{`Welcome ${user.username}`}</span>
+                                    <span>{`Welcome ${user.displayName}`}</span>
                                     <ManagerDropDown />
                                     <AppLink href="/logout">
                                         <Button variant="contained" color="error">

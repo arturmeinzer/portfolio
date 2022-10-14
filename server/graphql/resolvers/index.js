@@ -25,16 +25,3 @@ export const jobMutations = {
         return deletedJob._id;
     },
 };
-
-export const userQueries = {
-    user: async (root, args, ctx) => ctx.models.User.getAuthUser(ctx),
-};
-
-export const userMutations = {
-    login: (root, { input }, ctx) => ctx.models.User.login(input, ctx),
-    logout: (root, args, ctx) => ctx.models.User.logout(ctx),
-    register: async (root, { input }, ctx) => {
-        const registeredUser = await ctx.models.User.register(input);
-        return registeredUser._id;
-    },
-};
