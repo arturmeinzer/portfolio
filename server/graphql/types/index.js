@@ -36,28 +36,3 @@ export const jobTypes = `
         ${jobFields}
     }
 `;
-
-export const userTypes = `
-    type User {
-        _id: ID,
-        avatar: String
-        username: String
-        name: String
-        email: String
-        role: String
-    }
-
-    input RegisterInput {
-        avatar: String
-        username: String!
-        name: String
-        email: String!
-        password: String!
-        passwordConfirmation: String!
-    }
-    
-    input LoginInput {
-        email: String!
-        password: String!
-    }
-`;

@@ -4,11 +4,9 @@ import {
     projectQueries,
     projectMutations,
     jobQueries,
-    userMutations,
-    userQueries,
     jobMutations,
 } from "./resolvers/index.js";
-import { projectTypes, jobTypes, userTypes } from "./types/index.js";
+import { projectTypes, jobTypes } from "./types/index.js";
 
 // GraphqlModels
 import Project from "./models/Project.js";
@@ -18,7 +16,6 @@ const createApolloServer = () => {
     const typeDefs = gql`
         ${projectTypes}
         ${jobTypes}
-        ${userTypes}
 
         type Query {
             project(id: ID): Project
@@ -36,10 +33,6 @@ const createApolloServer = () => {
             createJob(input: JobInput): Job
             updateJob(id: ID, input: JobInput): Job
             deleteJob(id: ID): ID
-            
-            login(input: LoginInput): User
-            logout: Boolean
-            register(input: RegisterInput): String
         }
     `;
 
@@ -47,12 +40,10 @@ const createApolloServer = () => {
         Query: {
             ...projectQueries,
             ...jobQueries,
-            ...userQueries,
         },
         Mutation: {
             ...projectMutations,
             ...jobMutations,
-            ...userMutations,
         },
     };
 

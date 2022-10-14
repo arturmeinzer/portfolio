@@ -77,7 +77,6 @@ export default Cors(async (request, res) => {
         }),
         plugins: [
             ApolloServerPluginLandingPageGraphQLPlayground(),
-            // ApolloServerPluginDrainHttpServer({ httpServer }),
         ],
     });
 
