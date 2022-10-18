@@ -44,7 +44,7 @@ const ProjectEdit = ({ notify }) => {
         };
 
         updateProject({ variables: { id, ...updatedData } })
-            .then(async () => {
+            .then(() => {
                 notify("Project updated successfully", () => {
                     router.push("/projects");
                 });

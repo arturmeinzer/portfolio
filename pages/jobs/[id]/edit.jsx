@@ -1,24 +1,27 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
+import PropTypes from "prop-types";
 import BaseLayout from "../../../layouts/BaseLayout";
 import { useGetJob, useUpdateJob } from "../../../apollo/actions";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import JobCreateForm from "../../../components/forms/job/JobCreateForm";
 import PageHeader from "../../../components/shared/PageHeader";
+import withMessage from "../../../hoc/withMessage.jsx";
 
-const JobEdit = () => {
+const JobEdit = ({ notify }) => {
     const router = useRouter();
     const { id } = router.query;
     const { data } = useGetJob({ variables: { id } });
     const [updateJob, { error }] = useUpdateJob();
-    const errorMessage = (err) => err.message;
 
     const handleEdit = (jobData) => {
         updateJob({ variables: { id, ...jobData } })
-            .then(async () => {
-                await router.push("/jobs");
+            .then(() => {
+                notify("Job updated successfully", () => {
+                    router.push("/cv");
+                });
             })
             .catch(() => {});
     };
@@ -46,9 +49,13 @@ const JobEdit = () => {
                     onSubmit={handleEdit}
                 />
             )}
-            { error && <Alert severity="error">{errorMessage(error)}</Alert> }
+            { error && <Alert severity="error">{error.message}</Alert> }
         </BaseLayout>
     );
 };
 
-export default withApollo(withAuth(JobEdit));
+JobEdit.propTypes = {
+    notify: PropTypes.func.isRequired,
+};
+
+export default withMessage(withApollo(withAuth(JobEdit)));

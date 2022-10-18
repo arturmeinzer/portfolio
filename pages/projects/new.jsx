@@ -27,7 +27,7 @@ const ProjectCreate = ({ notify }) => {
         };
 
         createProject({ variables: updatedData })
-            .then(async () => {
+            .then(() => {
                 notify("Project created successfully", () => {
                     router.push("/projects");
                 });

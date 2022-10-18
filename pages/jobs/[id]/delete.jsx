@@ -3,13 +3,15 @@ import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 import Container from "@mui/material/Container";
+import PropTypes from "prop-types";
 import BaseLayout from "../../../layouts/BaseLayout";
 import { useDeleteJob } from "../../../apollo/actions";
 import withAuth from "../../../hoc/withAuth";
 import withApollo from "../../../hoc/withApollo";
 import Form from "../../../components/shared/Form";
+import withMessage from "../../../hoc/withMessage.jsx";
 
-const JobDelete = () => {
+const JobDelete = ({ notify }) => {
     const router = useRouter();
     const { id } = router.query;
     const [deleteJob, { error }] = useDeleteJob();
@@ -17,8 +19,10 @@ const JobDelete = () => {
 
     const handleDelete = () => {
         deleteJob({ variables: { id } })
-            .then(async () => {
-                await router.push("/jobs");
+            .then(() => {
+                notify("Job deleted successfully", () => {
+                    router.push("/cv");
+                });
             })
             .catch(() => {});
     };
@@ -41,4 +45,8 @@ const JobDelete = () => {
     );
 };
 
-export default withApollo(withAuth(JobDelete));
+JobDelete.propTypes = {
+    notify: PropTypes.func.isRequired,
+};
+
+export default withMessage(withApollo(withAuth(JobDelete)));

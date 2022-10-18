@@ -24,7 +24,7 @@ const ProjectDelete = ({ notify }) => {
         }
 
         deleteProject({ variables: { id } })
-            .then(async () => {
+            .then(() => {
                 notify("Project deleted successfully", () => {
                     router.push("/projects");
                 });
