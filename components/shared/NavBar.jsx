@@ -11,11 +11,10 @@ import Typography from "@mui/material/Typography";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Stack from "@mui/material/Stack";
 import AppLink from "./AppLink";
-import withApollo from "../../hoc/withApollo";
 import ManagerDropDown from "./ManagerDropDown";
 import Brand from "./Brand";
-import withUser from "../../hoc/withUser";
 import { PROP_USER } from "../../constants/props";
+import withUser from "../../hoc/withUser.jsx";
 
 const pages = [
     {
@@ -120,4 +119,4 @@ NavBar.defaultProps = {
     user: null,
 };
 
-export default withApollo(withUser(NavBar));
+export default withUser(NavBar);

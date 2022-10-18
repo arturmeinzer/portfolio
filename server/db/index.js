@@ -1,21 +1,14 @@
 import { config } from "dotenv";
 import mongoose from "mongoose";
-import session from "express-session";
-import connectMongodbSession from "connect-mongodb-session";
 import "./models/project.js";
 import "./models/job.js";
 
 config();
-const MongoDBStore = connectMongodbSession(session);
 
+// eslint-disable-next-line import/prefer-default-export
 export const connect = () => {
     mongoose.connect(process.env.DB_URI, () => {
         // eslint-disable-next-line no-console
-        console.log("connected to db");
+        console.info("connected to db");
     });
 };
-
-export const initSessionStore = () => new MongoDBStore({
-    uri: process.env.DB_URI,
-    collection: "sessions",
-}, () => {});

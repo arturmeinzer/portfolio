@@ -1,7 +1,4 @@
 body {
-    font-family: "Helvetica Neue", helvetica, arial, sans-serif;
-    margin: 0;
-    padding: 0;
     min-height: 100%;
     background: #f3f2ef;
 }
@@ -27,4 +24,9 @@ a {
 
 .react-datepicker__input-container input:focus {
     outline: none;
+}
+
+.projects-gallery .image-gallery-content:not(.fullscreen) img {
+    height: 200px;
+    object-fit: cover;
 }

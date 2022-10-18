@@ -11,6 +11,7 @@ const Hero = () => (
     <Box sx={{
         background: "linear-gradient(170deg, #212A39 0%, #181E28 100%)",
         width: "100%",
+        boxShadow: "0 4px 10px 0 rgb(0 0 0 / 50%)",
     }}
     >
         <Container

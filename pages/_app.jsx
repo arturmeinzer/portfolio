@@ -6,6 +6,8 @@ import "../styles/index.css";
 import React from "react";
 import PropTypes from "prop-types";
 import { initializeApp } from "firebase/app";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -19,8 +21,44 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
+const theme = createTheme({
+    components: {
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    background: "#fff",
+                },
+            },
+        },
+        MuiButton: {
+            defaultProps: {
+                variant: "contained",
+            },
+        },
+        MuiAlert: {
+            defaultProps: {
+                variant: "outlined",
+            },
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    boxShadow: "0 1px 4px 0 rgb(0 0 0 / 20%)",
+                    border: "0",
+                    "&:hover": {
+                        boxShadow: "0px 4px 8px 0 rgb(0 0 0 / 20%)",
+                    },
+                },
+            },
+        },
+    },
+});
+
 const MyApp = ({ Component, pageProps }) => (
-    <Component {...pageProps} />
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+    </ThemeProvider>
 );
 
 MyApp.propTypes = {

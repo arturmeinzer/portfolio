@@ -17,15 +17,16 @@ import ExternalLink from "../shared/ExternalLink";
 const ProjectCard = ({ project, children }) => (
     <Box sx={{ width: { xs: "100%", md: "33%" } }}>
         <Box sx={{ margin: "0 10px", height: "100%" }}>
-            <Card
-                variant="outlined"
-                sx={{ display: "flex", flexDirection: "column", height: "100%" }}
-            >
+            <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <AppLink
                     href="/projects/[id]"
                     as={`/projects/${project._id}`}
                 >
-                    <CardHeader title={project.title} />
+                    <CardHeader
+                        title={project.title}
+                        titleTypographyProps={{ fontWeight: "bold" }}
+                        sx={{ textAlign: "center" }}
+                    />
                 </AppLink>
                 <Box sx={{ flexGrow: 1 }}>
                     <ImageGallery
@@ -35,6 +36,7 @@ const ProjectCard = ({ project, children }) => (
                         showBullets={project.images.length > 1}
                         showFullscreenButton={project.images.length > 1}
                         disableKeyDown
+                        additionalClass="projects-gallery"
                     />
                 </Box>
                 <Box sx={{ background: "#D6EAF8", padding: "10px" }}>

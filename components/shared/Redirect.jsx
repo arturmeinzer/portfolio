@@ -6,7 +6,11 @@ const Redirect = ({ to, message }) => {
     const router = useRouter();
 
     useEffect(() => {
-        router.push({ pathname: to, query: { message } });
+        if (message) {
+            router.push({ pathname: to, query: { message } });
+        } else {
+            router.push({ pathname: to });
+        }
     }, [router, to, message]);
 
     return null;
