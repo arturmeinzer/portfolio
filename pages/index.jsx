@@ -50,11 +50,11 @@ const techStack = [
 ];
 
 const style = {
-    border: "1px solid #ddd",
     background: "#fff",
     lineHeight: "30px",
     borderRadius: "5px",
     padding: "20px",
+    boxShadow: "0 1px 4px 0 rgb(0 0 0 / 20%)",
 };
 
 const Home = () => (
