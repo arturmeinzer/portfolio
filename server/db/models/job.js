@@ -7,7 +7,7 @@ const jobSchema = new Schema({
     position: { type: String, required: true },
     bullets: Array,
     startDate: Date,
-    endDate: Date,
+    endDate: { type: Date, default: null },
     createdAt: { type: Date, default: Date.now },
 });
 

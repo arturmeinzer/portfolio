@@ -15,7 +15,7 @@ export const monthDiff = (start, end) => {
 
     let endDate;
     if (!end) {
-        endDate = moment().unix();
+        endDate = moment(new Date());
     } else {
         endDate = moment.unix(end / 1000);
     }

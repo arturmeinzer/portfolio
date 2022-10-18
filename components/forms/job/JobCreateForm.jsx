@@ -107,6 +107,7 @@ JobCreateForm.propTypes = {
 JobCreateForm.defaultProps = {
     initialData: {
         startDate: newDate(),
+        endDate: null,
     },
 };
 
