@@ -31,7 +31,6 @@ const TechStackSelect = ({ field: { value, onChange } }) => (
         value={value}
         onChange={onChange}
         renderValue={(selected) => (
-            // <DraggableList onDragEnd={() => {}} items={selected} />
             <TechStack iconsArray={selected} />
         )}
         MenuProps={{
