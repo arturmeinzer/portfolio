@@ -58,6 +58,10 @@ export const config = {
     },
 };
 
+const plugins = process.env.NODE_ENV !== "production"
+    ? [ApolloServerPluginLandingPageGraphQLPlayground()]
+    : [];
+
 export default Cors(async (request, res) => {
     if (request.method === "OPTIONS") {
         res.end();
@@ -75,9 +79,7 @@ export default Cors(async (request, res) => {
                 Job: new Job(mongoose.model("Job"), req.user),
             },
         }),
-        plugins: [
-            ApolloServerPluginLandingPageGraphQLPlayground(),
-        ],
+        plugins,
     });
 
     await server.start();
