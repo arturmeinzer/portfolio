@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getDataFromTree } from "@apollo/react-ssr";
 import Button from "@mui/material/Button";
 import { MdDelete, MdEdit } from "react-icons/md";
@@ -7,18 +7,18 @@ import { useGetProjects } from "../../apollo/actions";
 import withApollo from "../../hoc/withApollo";
 import ProjectCard from "../../components/projects/ProjectCard";
 import BaseLayout from "../../layouts/BaseLayout";
-import { PROP_USER } from "../../constants/props";
-import withUser from "../../hoc/withUser";
 import AppLink from "../../components/shared/AppLink";
 import PageHeader from "../../components/shared/PageHeader";
+import UserContext from "../../context/UserContext.jsx";
 
-const Projects = ({ user }) => {
-    const { data } = useGetProjects();
+const Projects = () => {
+    const { data, loading } = useGetProjects();
+    const user = useContext(UserContext);
 
     const projects = (data && data.projects) || [];
 
     return (
-        <BaseLayout>
+        <BaseLayout loading={loading}>
             <PageHeader>Some Things I&apos;ve Built</PageHeader>
             <Stack
                 flexDirection="row"
@@ -54,12 +54,4 @@ const Projects = ({ user }) => {
     );
 };
 
-Projects.propTypes = {
-    user: PROP_USER,
-};
-
-Projects.defaultProps = {
-    user: null,
-};
-
-export default withApollo(withUser(Projects), { getDataFromTree });
+export default withApollo(Projects, { getDataFromTree });

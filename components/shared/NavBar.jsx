@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -13,8 +13,7 @@ import Stack from "@mui/material/Stack";
 import AppLink from "./AppLink";
 import ManagerDropDown from "./ManagerDropDown";
 import Brand from "./Brand";
-import { PROP_USER } from "../../constants/props";
-import withUser from "../../hoc/withUser.jsx";
+import UserContext from "../../context/UserContext.jsx";
 
 const pages = [
     {
@@ -27,8 +26,9 @@ const pages = [
     },
 ];
 
-const NavBar = ({ user }) => {
+const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
+    const user = useContext(UserContext);
 
     const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
     const handleCloseNavMenu = () => setAnchorElNav(null);
@@ -111,12 +111,4 @@ const NavBar = ({ user }) => {
     );
 };
 
-NavBar.propTypes = {
-    user: PROP_USER,
-};
-
-NavBar.defaultProps = {
-    user: null,
-};
-
-export default withUser(NavBar);
+export default NavBar;

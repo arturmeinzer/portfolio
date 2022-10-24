@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getDataFromTree } from "@apollo/react-ssr";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Button from "@mui/material/Button";
@@ -7,18 +7,18 @@ import { useGetJobs } from "../apollo/actions";
 import withApollo from "../hoc/withApollo";
 import JobCard from "../components/jobs/JobCard";
 import BaseLayout from "../layouts/BaseLayout";
-import { PROP_USER } from "../constants/props";
-import withUser from "../hoc/withUser";
 import AppLink from "../components/shared/AppLink";
 import PageHeader from "../components/shared/PageHeader";
+import UserContext from "../context/UserContext.jsx";
 
-const Jobs = ({ user }) => {
-    const { data } = useGetJobs();
+const Jobs = () => {
+    const { data, loading } = useGetJobs();
+    const user = useContext(UserContext);
 
     const jobs = (data && data.jobs) || [];
 
     return (
-        <BaseLayout>
+        <BaseLayout loading={loading}>
             <PageHeader>Jobs</PageHeader>
             <Stack direction="row" flexWrap="wrap" alignItems="stretch">
                 {jobs.map((job) => (
@@ -46,12 +46,4 @@ const Jobs = ({ user }) => {
     );
 };
 
-Jobs.propTypes = {
-    user: PROP_USER,
-};
-
-Jobs.defaultProps = {
-    user: null,
-};
-
-export default withApollo(withUser(Jobs), { getDataFromTree });
+export default withApollo(Jobs, { getDataFromTree });
