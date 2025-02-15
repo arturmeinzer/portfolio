@@ -7,27 +7,20 @@ import { BsGithub } from "react-icons/bs";
 import Stack from "@mui/material/Stack";
 import ImageGallery from "react-image-gallery";
 import { CardHeader } from "@mui/material";
-import Button from "@mui/material/Button";
 import { FiExternalLink } from "react-icons/fi";
 import IconButton from "@mui/material/IconButton";
 import TechStack from "../shared/TechStack";
-import AppLink from "../shared/AppLink";
 import ExternalLink from "../shared/ExternalLink";
 
 const ProjectCard = ({ project, children }) => (
     <Box sx={{ width: { xs: "100%", md: "33%" } }}>
         <Box sx={{ margin: "0 10px", height: "100%" }}>
             <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <AppLink
-                    href="/projects/[id]"
-                    as={`/projects/${project._id}`}
-                >
-                    <CardHeader
-                        title={project.title}
-                        titleTypographyProps={{ fontWeight: "bold" }}
-                        sx={{ textAlign: "center" }}
-                    />
-                </AppLink>
+                <CardHeader
+                    title={project.title}
+                    titleTypographyProps={{ fontWeight: "bold" }}
+                    sx={{ textAlign: "center" }}
+                />
                 <Box sx={{ flexGrow: 1 }}>
                     <ImageGallery
                         items={project.images.map((image) => ({ original: image }))}
@@ -42,15 +35,7 @@ const ProjectCard = ({ project, children }) => (
                 <Box sx={{ background: "#D6EAF8", padding: "10px" }}>
                     {project.techStack && <TechStack iconsArray={project.techStack} />}
                 </Box>
-                <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-                    <AppLink
-                        href="/projects/[id]"
-                        as={`/projects/${project._id}`}
-                    >
-                        <Button variant="outlined">
-                            Learn More
-                        </Button>
-                    </AppLink>
+                <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
                     <Box>
                         {project.website && (
                             <ExternalLink href={project.website}>

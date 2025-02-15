@@ -20,7 +20,6 @@ const ProjectCreateForm = ({ onSubmit, initialData }) => {
                 <InputLabel>Title</InputLabel>
                 <OutlinedInput
                     label="Title"
-                    name="title"
                     {...register("title")}
                 />
             </FormControl>
@@ -31,7 +30,6 @@ const ProjectCreateForm = ({ onSubmit, initialData }) => {
                     label="Content"
                     multiline
                     minRows={3}
-                    name="content"
                     {...register("content")}
                 />
             </FormControl>
@@ -51,7 +49,6 @@ const ProjectCreateForm = ({ onSubmit, initialData }) => {
                 <InputLabel>Website</InputLabel>
                 <OutlinedInput
                     label="Website"
-                    name="website"
                     {...register("website")}
                 />
             </FormControl>
@@ -60,7 +57,6 @@ const ProjectCreateForm = ({ onSubmit, initialData }) => {
                 <InputLabel>Github</InputLabel>
                 <OutlinedInput
                     label="Github"
-                    name="github"
                     {...register("github")}
                 />
             </FormControl>

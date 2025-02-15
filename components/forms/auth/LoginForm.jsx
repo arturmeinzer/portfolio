@@ -16,7 +16,6 @@ const LoginForm = ({ onSubmit, children }) => {
                 <InputLabel>Email</InputLabel>
                 <OutlinedInput
                     label="Email"
-                    name="email"
                     type="email"
                     autoComplete="email"
                     {...register("email")}
@@ -27,7 +26,6 @@ const LoginForm = ({ onSubmit, children }) => {
                 <InputLabel>Password</InputLabel>
                 <OutlinedInput
                     label="Password"
-                    name="password"
                     type="password"
                     autoComplete="current-password"
                     {...register("password")}

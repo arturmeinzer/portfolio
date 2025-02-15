@@ -9,7 +9,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { BsCircleFill } from "react-icons/bs";
 import ListItemText from "@mui/material/ListItemText";
-import AppLink from "../shared/AppLink";
 import { formatDate } from "../../utils/dateHelper";
 
 const JobCard = ({ job, children }) => (
@@ -19,29 +18,24 @@ const JobCard = ({ job, children }) => (
             onContextMenu={(e) => e.preventDefault()}
             sx={{ display: "flex", flexDirection: "column", height: "100%" }}
         >
-            <AppLink
-                href="/jobs/[id]"
-                as={`/jobs/${job._id}`}
-            >
-                <CardContent sx={{ display: "flex" }}>
-                    <Box sx={{ width: "200px" }}>
-                        <div>{`${formatDate(job.startDate)} - ${formatDate(job.endDate)}`}</div>
-                        <div>{`(${job.months})`}</div>
-                    </Box>
-                    <Box>
-                        <Box sx={{ paddingLeft: "15px", fontWeight: "bold" }}>{job.company}</Box>
-                        <Box sx={{ paddingLeft: "15px", marginTop: "10px" }}>{job.position}</Box>
-                        <List>
-                            {job.bullets.map((item) => (
-                                <ListItem key={item}>
-                                    <ListItemIcon sx={{ minWidth: "30px" }}><BsCircleFill /></ListItemIcon>
-                                    <ListItemText primary={item} />
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Box>
-                </CardContent>
-            </AppLink>
+            <CardContent sx={{ display: "flex" }}>
+                <Box sx={{ width: "200px" }}>
+                    <div>{`${formatDate(job.startDate)} - ${formatDate(job.endDate)}`}</div>
+                    <div>{`(${job.months})`}</div>
+                </Box>
+                <Box>
+                    <Box sx={{ paddingLeft: "15px", fontWeight: "bold" }}>{job.company}</Box>
+                    <Box sx={{ paddingLeft: "15px", marginTop: "10px" }}>{job.position}</Box>
+                    <List>
+                        {job.bullets.map((item) => (
+                            <ListItem key={item}>
+                                <ListItemIcon sx={{ minWidth: "30px" }}><BsCircleFill /></ListItemIcon>
+                                <ListItemText primary={item} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
+            </CardContent>
             {children && (
                 <CardActions>
                     {children}

@@ -20,13 +20,18 @@ export const projectTypes = `
 
 const jobFields = `
     company: String!
-    position: String!
+    position: String
     bullets: [String]
     startDate: String
     endDate: String
 `;
 
 export const jobTypes = `
+    type Language {
+        position: String!
+        bullets: [String]
+    }
+
     type Job {
         _id: ID,
         ${jobFields}

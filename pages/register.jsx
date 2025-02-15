@@ -21,6 +21,7 @@ const Register = () => {
             passwordConfirmation,
             username,
         } = registerData;
+
         if (password !== passwordConfirmation) {
             setError("Passwords don't match!");
             return;

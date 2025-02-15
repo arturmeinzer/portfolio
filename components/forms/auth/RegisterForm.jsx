@@ -1,9 +1,9 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
-import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import Form from "../../shared/Form";
 
@@ -16,7 +16,6 @@ const RegisterForm = ({ onSubmit, children }) => {
                 <InputLabel>Username</InputLabel>
                 <OutlinedInput
                     label="Username"
-                    name="username"
                     autoComplete="username"
                     {...register("username")}
                 />
@@ -26,7 +25,6 @@ const RegisterForm = ({ onSubmit, children }) => {
                 <InputLabel>Email</InputLabel>
                 <OutlinedInput
                     label="Email"
-                    name="email"
                     type="email"
                     autoComplete="email"
                     {...register("email")}
@@ -37,7 +35,6 @@ const RegisterForm = ({ onSubmit, children }) => {
                 <InputLabel>Password</InputLabel>
                 <OutlinedInput
                     label="Password"
-                    name="password"
                     type="password"
                     autoComplete="new-password"
                     {...register("password")}
@@ -48,7 +45,6 @@ const RegisterForm = ({ onSubmit, children }) => {
                 <InputLabel>Password Confirmation</InputLabel>
                 <OutlinedInput
                     label="Password Confirmation"
-                    name="passwordConfirmation"
                     type="password"
                     autoComplete="new-password"
                     {...register("passwordConfirmation")}

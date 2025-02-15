@@ -26,7 +26,7 @@ const BaseLayout = ({ children, loading, isHome }) => {
             <Footer />
         </Stack>
     );
-}
+};
 
 BaseLayout.propTypes = {
     children: PropTypes.node,
