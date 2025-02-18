@@ -6,9 +6,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import BaseLayout from "../layouts/BaseLayout";
-import DevIcon from "../components/shared/DevIcon";
-import ExternalLink from "../components/shared/ExternalLink";
+import BaseLayout from "../src/layouts/BaseLayout";
+import DevIcon from "../src/components/shared/DevIcon";
+import ExternalLink from "../src/components/shared/ExternalLink";
 
 const techStack = [
     {

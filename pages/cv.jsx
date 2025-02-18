@@ -3,13 +3,13 @@ import { getDataFromTree } from "@apollo/react-ssr";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import { useGetJobs } from "../apollo/actions";
-import withApollo from "../hoc/withApollo";
-import JobCard from "../components/jobs/JobCard";
-import BaseLayout from "../layouts/BaseLayout";
-import AppLink from "../components/shared/AppLink";
-import PageHeader from "../components/shared/PageHeader";
-import UserContext from "../context/UserContext.jsx";
+import { useGetJobs } from "../src/apollo/actions";
+import withApollo from "../src/hoc/withApollo";
+import JobCard from "../src/components/jobs/JobCard";
+import BaseLayout from "../src/layouts/BaseLayout";
+import AppLink from "../src/components/shared/AppLink";
+import PageHeader from "../src/components/shared/PageHeader";
+import UserContext from "../src/context/UserContext.jsx";
 
 const Jobs = () => {
     const { data, loading } = useGetJobs();

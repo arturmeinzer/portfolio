@@ -1,14 +1,14 @@
 import "devicon/devicon.min.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-image-gallery/styles/css/image-gallery.css";
-import "../styles/index.css";
+import "../src/styles/index.css";
 
 import React from "react";
 import PropTypes from "prop-types";
 import { initializeApp } from "firebase/app";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { UserContextProvider } from "../context/UserContext";
+import { UserContextProvider } from "../src/context/UserContext";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

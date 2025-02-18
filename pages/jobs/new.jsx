@@ -2,13 +2,13 @@ import React from "react";
 import Alert from "@mui/material/Alert";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
-import JobCreateForm from "../../components/forms/job/JobCreateForm";
-import withApollo from "../../hoc/withApollo";
-import withAuth from "../../hoc/withAuth";
-import { useCreateJob } from "../../apollo/actions";
-import BaseLayout from "../../layouts/BaseLayout";
-import PageHeader from "../../components/shared/PageHeader";
-import withMessage from "../../hoc/withMessage.jsx";
+import JobCreateForm from "../../src/components/forms/job/JobCreateForm";
+import withApollo from "../../src/hoc/withApollo";
+import withAuth from "../../src/hoc/withAuth";
+import { useCreateJob } from "../../src/apollo/actions";
+import BaseLayout from "../../src/layouts/BaseLayout";
+import PageHeader from "../../src/components/shared/PageHeader";
+import withMessage from "../../src/hoc/withMessage.jsx";
 
 const JobCreate = ({ notify }) => {
     const [createJob, { error }] = useCreateJob();

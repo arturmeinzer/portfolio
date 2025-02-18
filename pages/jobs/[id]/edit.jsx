@@ -2,13 +2,13 @@ import React from "react";
 import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 import PropTypes from "prop-types";
-import BaseLayout from "../../../layouts/BaseLayout";
-import { useGetJob, useUpdateJob } from "../../../apollo/actions";
-import withAuth from "../../../hoc/withAuth";
-import withApollo from "../../../hoc/withApollo";
-import JobCreateForm from "../../../components/forms/job/JobCreateForm";
-import PageHeader from "../../../components/shared/PageHeader";
-import withMessage from "../../../hoc/withMessage.jsx";
+import BaseLayout from "../../../src/layouts/BaseLayout";
+import { useGetJob, useUpdateJob } from "../../../src/apollo/actions";
+import withAuth from "../../../src/hoc/withAuth";
+import withApollo from "../../../src/hoc/withApollo";
+import JobCreateForm from "../../../src/components/forms/job/JobCreateForm";
+import PageHeader from "../../../src/components/shared/PageHeader";
+import withMessage from "../../../src/hoc/withMessage.jsx";
 
 const JobEdit = ({ notify }) => {
     const router = useRouter();

@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 import Container from "@mui/material/Container";
 import PropTypes from "prop-types";
-import BaseLayout from "../../../layouts/BaseLayout";
-import { useDeleteJob } from "../../../apollo/actions";
-import withAuth from "../../../hoc/withAuth";
-import withApollo from "../../../hoc/withApollo";
-import Form from "../../../components/shared/Form";
-import withMessage from "../../../hoc/withMessage.jsx";
+import BaseLayout from "../../../src/layouts/BaseLayout";
+import { useDeleteJob } from "../../../src/apollo/actions";
+import withAuth from "../../../src/hoc/withAuth";
+import withApollo from "../../../src/hoc/withApollo";
+import Form from "../../../src/components/shared/Form";
+import withMessage from "../../../src/hoc/withMessage.jsx";
 
 const JobDelete = ({ notify }) => {
     const router = useRouter();

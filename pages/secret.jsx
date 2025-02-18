@@ -1,7 +1,7 @@
 import React from "react";
-import withAuth from "../hoc/withAuth";
-import withApollo from "../hoc/withApollo";
-import BaseLayout from "../layouts/BaseLayout";
+import withAuth from "../src/hoc/withAuth";
+import withApollo from "../src/hoc/withApollo";
+import BaseLayout from "../src/layouts/BaseLayout";
 
 const Secret = withAuth(() => (
     <BaseLayout>

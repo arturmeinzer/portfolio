@@ -1,9 +1,9 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import AppLink from "../components/shared/AppLink";
-import BaseLayout from "../layouts/BaseLayout";
-import PageHeader from "../components/shared/PageHeader";
+import AppLink from "../src/components/shared/AppLink";
+import BaseLayout from "../src/layouts/BaseLayout";
+import PageHeader from "../src/components/shared/PageHeader";
 
 const FourOhFour = () => (
     <BaseLayout>

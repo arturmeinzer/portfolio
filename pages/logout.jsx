@@ -3,8 +3,8 @@ import Container from "@mui/material/Container";
 import { useRouter } from "next/router";
 import { getAuth, signOut } from "firebase/auth";
 import PropTypes from "prop-types";
-import withApollo from "../hoc/withApollo";
-import BaseLayout from "../layouts/BaseLayout";
+import withApollo from "../src/hoc/withApollo";
+import BaseLayout from "../src/layouts/BaseLayout";
 
 const Logout = ({ apollo }) => {
     const router = useRouter();

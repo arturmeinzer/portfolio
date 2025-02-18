@@ -2,14 +2,14 @@ import React from "react";
 import { useRouter } from "next/router";
 import Alert from "@mui/material/Alert";
 import PropTypes from "prop-types";
-import BaseLayout from "../../../layouts/BaseLayout";
-import ProjectCreateForm from "../../../components/forms/project/ProjectCreateForm";
-import { useGetProject, useUpdateProject } from "../../../apollo/actions";
-import withAuth from "../../../hoc/withAuth";
-import withApollo from "../../../hoc/withApollo";
-import withMessage from "../../../hoc/withMessage";
-import PageHeader from "../../../components/shared/PageHeader";
-import { handleImages } from "../../../utils/firebaseImageHandler";
+import BaseLayout from "../../../src/layouts/BaseLayout";
+import ProjectCreateForm from "../../../src/components/forms/project/ProjectCreateForm";
+import { useGetProject, useUpdateProject } from "../../../src/apollo/actions";
+import withAuth from "../../../src/hoc/withAuth";
+import withApollo from "../../../src/hoc/withApollo";
+import withMessage from "../../../src/hoc/withMessage";
+import PageHeader from "../../../src/components/shared/PageHeader";
+import { handleImages } from "../../../src/utils/firebaseImageHandler";
 
 const ProjectEdit = ({ notify }) => {
     const router = useRouter();

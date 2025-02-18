@@ -2,14 +2,14 @@ import React from "react";
 import Alert from "@mui/material/Alert";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
-import withApollo from "../../hoc/withApollo";
-import withAuth from "../../hoc/withAuth";
-import ProjectCreateForm from "../../components/forms/project/ProjectCreateForm";
-import { useCreateProject } from "../../apollo/actions";
-import BaseLayout from "../../layouts/BaseLayout";
-import PageHeader from "../../components/shared/PageHeader";
-import { handleImages } from "../../utils/firebaseImageHandler";
-import withMessage from "../../hoc/withMessage";
+import withApollo from "../../src/hoc/withApollo";
+import withAuth from "../../src/hoc/withAuth";
+import ProjectCreateForm from "../../src/components/forms/project/ProjectCreateForm";
+import { useCreateProject } from "../../src/apollo/actions";
+import BaseLayout from "../../src/layouts/BaseLayout";
+import PageHeader from "../../src/components/shared/PageHeader";
+import { handleImages } from "../../src/utils/firebaseImageHandler";
+import withMessage from "../../src/hoc/withMessage";
 
 const ProjectCreate = ({ notify }) => {
     const [createProject, { error }] = useCreateProject();

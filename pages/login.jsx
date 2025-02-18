@@ -6,12 +6,12 @@ import {
     getAuth,
     signInWithEmailAndPassword,
 } from "firebase/auth";
-import LoginForm from "../components/forms/auth/LoginForm";
-import withApollo from "../hoc/withApollo";
-import Redirect from "../components/shared/Redirect";
-import BaseLayout from "../layouts/BaseLayout";
-import PageHeader from "../components/shared/PageHeader";
-import { MESSAGES } from "../constants/messages";
+import LoginForm from "../src/components/forms/auth/LoginForm";
+import withApollo from "../src/hoc/withApollo";
+import Redirect from "../src/components/shared/Redirect";
+import BaseLayout from "../src/layouts/BaseLayout";
+import PageHeader from "../src/components/shared/PageHeader";
+import { MESSAGES } from "../src/constants/messages";
 
 const Login = () => {
     const [error, setError] = useState(null);

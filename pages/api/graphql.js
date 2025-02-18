@@ -1,20 +1,21 @@
 import cors from "micro-cors";
-import { ApolloServer, gql } from "apollo-server-micro";
+import gql from "graphql-tag";
+import { ApolloServer } from "@apollo/server";
 import mongoose from "mongoose";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import Project from "../../server/graphql/models/Project";
-import Job from "../../server/graphql/models/Job";
+import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import Project from "../../src/server/graphql/models/Project";
+import Job from "../../src/server/graphql/models/Job";
 import {
     jobTypes,
     projectTypes,
-} from "../../server/graphql/types";
+} from "../../src/server/graphql/types";
 import {
     jobMutations,
     jobQueries,
     projectMutations,
     projectQueries,
-} from "../../server/graphql/resolvers";
-import * as db from "../../server/db/index.js";
+} from "../../src/server/graphql/resolvers";
+import * as db from "../../src/server/db/index.js";
 
 const typeDefs = gql`
     ${projectTypes}
@@ -50,20 +51,9 @@ const resolvers = {
 };
 
 const Cors = cors();
-db.connect();
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
-
-const plugins = process.env.NODE_ENV !== "production"
-    ? [ApolloServerPluginLandingPageGraphQLPlayground()]
-    : [];
-
-export default Cors(async (request, res) => {
-    if (request.method === "OPTIONS") {
+export default Cors(async (req, res) => {
+    if (req.method === "OPTIONS") {
         res.end();
         return;
     }
@@ -73,17 +63,14 @@ export default Cors(async (request, res) => {
         resolvers,
         cache: "bounded",
         introspection: true,
-        context: ({ req }) => ({
-            models: {
-                Project: new Project(mongoose.model("Project"), req.user),
-                Job: new Job(mongoose.model("Job"), req.user),
-            },
-        }),
-        plugins,
     });
 
-    await server.start();
-    await server.createHandler({
+    await db.connect();
+    await startServerAndCreateNextHandler(server, {
         path: "/api/graphql",
-    })(request, res);
+        context: async () => ({
+            Project: new Project(mongoose.model("Project")),
+            Job: new Job(mongoose.model("Job")),
+        }),
+    })(req, res);
 });

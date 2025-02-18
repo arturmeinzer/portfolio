@@ -2,10 +2,10 @@ import React from "react";
 import { getDataFromTree } from "@apollo/react-ssr";
 import PropTypes from "prop-types";
 import Container from "@mui/material/Container";
-import withApollo from "../../../hoc/withApollo";
-import BaseLayout from "../../../layouts/BaseLayout";
-import TechStack from "../../../components/shared/TechStack";
-import { useGetProject } from "../../../apollo/actions";
+import withApollo from "../../../src/hoc/withApollo";
+import BaseLayout from "../../../src/layouts/BaseLayout";
+import TechStack from "../../../src/components/shared/TechStack";
+import { useGetProject } from "../../../src/apollo/actions";
 
 const ProjectDetail = ({ query }) => {
     const { data } = useGetProject({ variables: { id: query.id } });
